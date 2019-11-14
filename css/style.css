@@ -1,3 +1,224 @@
+<<<<<<< HEAD
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+
+body{
+    background: url(../img/bg01.png) #50a387 no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   -webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+   text-align: center;
+    font-size: 10px;
+    font-family: 'Noto Sans KR', sans-serif;
+    color: #fff;
+}
+
+
+/* 임시 숨김 처리 */
+.none{
+    display: none;
+}
+
+
+/* 메뉴 */
+header{
+    padding:20px;
+}
+
+#menu{
+    font-size: 1.5rem;
+    position: fixed;
+    right: 50px;
+    z-index: 100;
+}
+
+#menu a{
+    color: #fff;
+    text-decoration: none;
+}
+
+
+/* 상단 텍스트 이미지 */
+.textImg{
+    margin:30px 0;
+}
+
+
+/* 나무 이미지 */
+.mainSection {
+    margin:0 auto;
+    text-align: center;
+}
+
+.imgProject{
+    position:relative;
+    width: 470px;
+    height: 470px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.imgProject img {
+    position:absolute;
+    top:0;
+    left:50%;
+    transform:translateX(-50%);
+}
+
+.imgProject img:first-child{z-index: 50;}
+.imgProject img:nth-child(2){z-index: 49;}
+.imgProject img:nth-child(3){z-index: 47;}
+.imgProject img:nth-child(4){z-index: 46;}
+.imgProject img:nth-child(5){z-index: 45;}
+.imgProject img:last-child{z-index: 44;}
+
+.stopWatch{
+    font-family: 'Century Gothic', sans-serif;
+    font-size: 6.5rem;
+}
+
+
+/* range */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+   display: block;
+}
+
+article {
+    width: 50%;
+    margin: 30px auto;
+}
+input[type=range] {
+    width: 100%;
+}
+.rangeslider input[type=range] {
+    -webkit-appearance: none;
+}
+.rangeslider  input[type=range]:focus {
+    outline: none;
+}
+/*webkit (Chrome)의 경우*/
+.rangeslider input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #10482d;
+}
+.rangeslider input[type=range]::-webkit-slider-thumb {
+    border: 1px solid #10482d;
+    height: 15px;
+    width: 10px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -5px; /*chrome의 경우 margin-top값을 부여해야합니다.*/
+}
+.rangeslider input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #10482d; /*네모버튼에 포커스를 줬을때 뒤에 라인(ㅡ)의 효과*/
+}
+/*Firefox의 경우*/
+.rangeslider input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: #10482d;
+}
+.rangeslider input[type=range]::-moz-range-thumb {
+    border: 1px solid #10482d;
+    height: 15px;
+    width: 10px;
+    background: #ffffff;
+    cursor: pointer;
+}
+/*IE의 경우*/
+.rangeslider input[type=range]::-ms-track {
+    width: 100%;
+    height: 5px;
+    cursor: pointer;
+    animate: 0.2s;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+}
+.rangeslider input[type=range]::-ms-fill-lower {
+    background: #10482d;
+}
+.rangeslider input[type=range]::-ms-fill-upper {
+    background: #10482d;
+}
+.rangeslider input[type=range]::-ms-thumb {
+    margin-top: 1px;
+    border: 1px solid #10482d;
+    height: 15px;
+    width: 10px;
+    background: #ffffff;
+    cursor: pointer;
+}
+
+.rangeslider input[type=range]:focus::-ms-fill-lower {
+    background: #10482d;/*네모버튼에 포커스를 줬을때 뒤에 라인(ㅡ)의 효과*/
+}
+
+.rangeslider input[type=range]:focus::-ms-fill-upper {
+    background: #10482d; /*네모버튼에 포커스를 줬을때 뒤에 라인(ㅡ)의 효과*/
+}
+
+
+/* 시작하기 및 포기 버튼 */
+.buttonStart, .buttonStop {
+    border-radius: 5px;
+    font-size:0;
+}
+.buttonStart{
+    background: url(../img/startBtn.png) #fff no-repeat center;
+    background-color: #fff;
+    padding:30px;
+    border:none;
+    width: 300px;
+}
+.buttonStop {
+    background: url(../img/stopBtn.png) #fff no-repeat center;
+    background-color: transparent;
+    border: 4px solid #fff;
+    padding:20px;
+    width: 200px;
+}
+
+
+/* 반응형 */
+@media (min-width:801px) and (max-width: 1200px){
+    .imgProject{
+        width:400px;
+        height:400px;
+    }
+
+    .imgProject img {
+        width: 400px;
+        height: 400px;
+    }
+}
+
+@media (max-width: 800px){
+    .imgProject{
+        width:300px;
+        height:300px;
+    }
+
+    .imgProject img {
+        width: 300px;
+        height: 300px;
+    }
+    .buttonStart{
+        width:200px;
+    }
+=======
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
 
 .stop-watch {
@@ -134,4 +355,5 @@ header {
 }
 .slider{
   width: 450px;
+>>>>>>> a77283ba1292f2af2d130227a8837feb219af880
 }
