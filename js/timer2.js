@@ -30,14 +30,17 @@ function minusSecond() {
     minute -= 1;
     second = 60;
   }
-  $display.innerHTML = `${minute < 10 ? `0${minute - 1}` : minute - 1} : ${
-    second < 10 ? `0${second}` : second
-  }`;
+  if (minute === 0) { 
+    clearInterval(myInterval);
+  }
+
+  $display.innerHTML = `${minute < 10 ? `0${minute - 1}` : minute - 1} 
+  : ${second < 10 ? `0${second}` : second}`;
 }
 
 $btn.addEventListener("click", () => {
   if (isTrue) {
-    myInterval = setInterval(minusSecond, 1000);
+    myInterval = setInterval(minusSecond, 100);
     isTrue = false;
   } else {
     clearInterval(myInterval);
