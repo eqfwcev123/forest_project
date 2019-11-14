@@ -33,7 +33,7 @@ function minusSecond() {
   }
   second -= 1;
 
-  $display.innerHTML = `${minute < 10 ?`0${minute-1}`:minute-1}:${second < 10 ?`0${second}`:second}`;
+  $display.innerHTML = `${minute < 10 ?`0${minute}`:minute}:${second < 10 ?`0${second}`:second}`;
    
   console.log('[type,minute]',typeof minute,minute,typeof second, second);
   console.log(second===0);
@@ -53,7 +53,7 @@ function minusSecond() {
 
 $btn.addEventListener("click", () => {
   if (isTrue) {
-    myInterval = setInterval(minusSecond, 1000);
+    myInterval = setInterval(minusSecond, 10);
     numToRemember = minute;
     isTrue = false;
   } else {
