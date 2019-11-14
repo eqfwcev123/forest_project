@@ -1,12 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-  <h1>changed index.html</h1>
+  <!-- 초기값으로 10분에서 시작 -->
+  <div class="stop-watch">
+    <div class="display">15:00</div>
+    <button class="button">Start</button>
+  </div>
+
+
+  <div class="rangeslider">
+    <input type="range" min="1" max="100" value="15" class="slider" id="slider-range">
+    <p class="time"></p>
+  </div>
+  <script src="./js/timer2.js"></script>
 </body>
+
 </html>
