@@ -20,8 +20,14 @@ let second = 0;
 
 // 드래그로 분 설정 하는곳 minute 변수에 숫자 설정
 $slider.oninput = e => {
+
+  if(isTrue === false){
+    e.currentTarget.value = minute;
+    return;
+  }
+
   minute = e.currentTarget.value;
-  $display.innerHTML = `${minute} : 00`;
+  $display.innerHTML = `${minute}:00`;
 };
 
 // 시계
@@ -39,7 +45,7 @@ function minusSecond() {
   console.log(second===0);
   console.log(minute===0);
 
-  if((second===0) && (minute-1 === 0)) {
+  if((second===0) && (minute === 0)) {
     console.log('stop');
     clearInterval(myInterval);
     isTrue = true; 
@@ -53,7 +59,7 @@ function minusSecond() {
 
 $btn.addEventListener("click", () => {
   if (isTrue) {
-    myInterval = setInterval(minusSecond, 10);
+    myInterval = setInterval(minusSecond, 100);
     numToRemember = minute;
     isTrue = false;
   } else {
@@ -61,3 +67,4 @@ $btn.addEventListener("click", () => {
     isTrue = true;
   }
 });
+
