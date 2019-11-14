@@ -1,12 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <title>자라나라 나무나무</title>
+    <link rel="shortcut icon" href="img/fav.ico">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/normalize.css" rel="stylesheet">
+    <link href="css/slider.css" rel="stylesheet">
+    <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+    <script src="js/timer.js" defer></script>
+    <script src="js/slider.js" defer></script>
 </head>
 <body>
-  <h1>changed index.html</h1>
+    <header>
+        <nav id="menu">
+            <span><a href="#"><i class="fas fa-tree"></i> 내 숲으로 가기</a></span>
+        </nav>
+    </header>
+    <main>
+        <section class= "mainSection">
+            <div class="textImg">
+                <img src="img/titleText01.png" alt="시작해볼까!" class="titleText">
+                <img src="img/titleText02.png" alt="힘내세요, 할 수 있어요!" class="titleText none">
+                <img src="img/titleText03.png" alt="축하합니다" class="titleText none">
+            </div>
+            <div class="imgProject">
+                <img src="img/mainImg01.png" alt="나무 0단계" class="treeImg01">
+                <img src="img/mainImg02.png" alt="나무 1단계" class="treeImg02">
+                <img src="img/mainImg03.png" alt="나무 2단계" class="treeImg03">
+                <img src="img/mainImg04.png" alt="나무 3단계" class="treeImg04">
+                <img src="img/mainImg05.png" alt="나무 4단계" class="treeImg05">
+                <img src="img/mainImg06.png" alt="나무 5단계" class="treeImg06s">
+            </div>
+            <div class="stopWatch">
+                <div></div>
+            </div>
+            <article>
+                <div class="rangeslider">
+                    <input type="range" min="1" max="100" value="10" class="slider" id="slider-range">
+                    <p class="time"></p>
+                    <button class="buttonStart">시작하기</button>
+                    <button class="buttonStop none">포기</button>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <form oninput="output.value = Math.round(range.valueAsNumber / 1000)">
+    <h2>
+      Range slider
+    </h2>
+    <div class="range">
+      <input name="range" type="range" min="0" max="100000">
+      <div class="range-output">
+        <output class="output" name="output" for="range">
+          50
+        </output>
+      </div>
+    </div>
+  </form>
+
 </body>
 </html>
