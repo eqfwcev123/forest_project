@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 
 body{
-    background: url(../img/bg01.png) #50a387 no-repeat center center fixed; 
+    background: url(../img/bg01.png) #50a387 no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -16,7 +16,10 @@ body{
     font-family: 'Noto Sans KR', sans-serif;
     color: #fff;
 }
-
+.left, .right{
+    width:50%;
+    display: inline-block;
+}
 
 /* 임시 숨김 처리 */
 .none{

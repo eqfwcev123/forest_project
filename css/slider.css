@@ -16,10 +16,10 @@
 
 input[type=range]::-ms-track {
     height: 10px;
-    
+
     /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */
     background: transparent;
-    
+
     /*leave room for the larger thumb to overflow with a transparent border */
     border-color: transparent;
 /*    border-width: 6px 0;*/
@@ -38,7 +38,7 @@ input[type=range]::-ms-track {
 }
 
 
-::-ms-tooltip { 
+::-ms-tooltip {
     display: none;
 }
 
