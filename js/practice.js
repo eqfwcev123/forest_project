@@ -52,19 +52,21 @@ function minusSecond() {
     $display.innerHTML = `${numToRemember}:00`;
     minute = numToRemember;
     $slider.value = numToRemember;
+    $btn.style.background = "url('./img/startBtn.png') red no-repeat center";
   }
-
-
 }
 
-$btn.addEventListener("click", () => {
+$btn.addEventListener("click", (e) => {
   if (isTrue) {
-    myInterval = setInterval(minusSecond, 1000);
+    myInterval = setInterval(minusSecond, 10);
     numToRemember = minute;
     isTrue = false;
+    e.target.style.background = "url('./img/stopBtn.png') blue no-repeat center";
   } else {
     clearInterval(myInterval);
     isTrue = true;
+    e.target.style.background = "url('./img/startBtn.png') red no-repeat center";
   }
+   
 });
 
