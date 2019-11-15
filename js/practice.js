@@ -59,11 +59,7 @@ function minusSecond() {
 
 $btn.addEventListener("click", () => {
   if (isTrue) {
-<<<<<<< HEAD
     myInterval = setInterval(minusSecond, 1000);
-=======
-    myInterval = setInterval(minusSecond, 100);
->>>>>>> 38d3f554019dfdfc7df9cead0ff5ea75f2f8eec0
     numToRemember = minute;
     isTrue = false;
   } else {
