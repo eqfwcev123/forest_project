@@ -1,237 +1,265 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 
-body{
+body {
     background: url(../img/bg01.png) #50a387 no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     margin: 0;
-   padding: 0;
-   box-sizing: border-box;
-   -webkit-box-sizing: border-box;
-   -moz-box-sizing: border-box;
-   text-align: center;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    text-align: center;
     font-size: 10px;
     font-family: 'Noto Sans KR', sans-serif !important;
     color: #fff;
 }
 
-a{
+a {
     text-decoration: none;
-    color:inherit;
+    color: inherit;
 }
+
 /* 숨김 컨텐츠 */
-.a11y-hiddden, legend{
-    position: absolute; /* 숨김 컨텐츠 시작 */
+.a11y-hiddden,
+legend {
+    position: absolute;
+    /* 숨김 컨텐츠 시작 */
     width: 1px;
     height: 1px;
-    overflow:hidden;
-    margin:-1px;
-    clip:rect(0,0,0,0); /* 숨김 컨텐츠 끝 */
-    white-space: nowrap; /* 줄바꿈하지 말 것 */
+    overflow: hidden;
+    margin: -1px;
+    clip: rect(0, 0, 0, 0);
+    /* 숨김 컨텐츠 끝 */
+    white-space: nowrap;
+    /* 줄바꿈하지 말 것 */
 }
 
 /* 클리어픽스 - float 이슈를 해결하기 위한 선언 */
-.clearfix::after{
-    content:"";
-    display:block;
-    clear:both;
+.clearfix::after {
+    content: "";
+    display: block;
+    clear: both;
 }
 
 /* 임시 숨김 처리 */
-.displayNone{
+.displayNone {
     display: none;
 }
 
 
 /* 메뉴 */
-header{@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
+header {
+    @import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap');
 
-    body{
-        background: url(../img/bg01.png) #50a387 no-repeat center center fixed; 
+    body {
+        background: url(../img/bg01.png) #50a387 no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;
         background-size: cover;
         margin: 0;
-       padding: 0;
-       box-sizing: border-box;
-       -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-       text-align: center;
+        padding: 0;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        text-align: center;
         font-size: 10px;
         font-family: 'Noto Sans KR', sans-serif;
         color: #fff;
     }
-    
-    
+
+
     /* 임시 숨김 처리 */
-    .displayNone{
+    .displayNone {
         display: none;
     }
-    
-    
+
+
     /* 메뉴 */
-    header{
-        padding:20px;
+    header {
+        padding: 20px;
     }
-    
-    #menu{
+
+    #menu {
         font-size: 1.5rem;
         position: fixed;
         right: 50px;
         z-index: 100;
     }
-    
-    #menu a{
+
+    #menu a {
         color: #fff;
         text-decoration: none;
     }
-    
-    
+
+
     /* 상단 텍스트 이미지 */
-    .textImg{
-        margin:30px 0;
+    .textImg {
+        margin: 30px 0;
     }
-    
-    
+
+
     /* 나무 이미지 */
     .mainSection {
-        margin:0 auto;
+        margin: 0 auto;
         text-align: center;
     }
-    
-    .imgProject{
-        position:relative;
+
+    .imgProject {
+        position: relative;
         width: 470px;
         height: 470px;
         margin: 0 auto;
         text-align: center;
     }
-    
+
     .imgProject img {
-        position:absolute;
-        top:0;
-        left:50%;
-        transform:translateX(-50%);
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
     }
-    
-    .imgProject img:first-child{z-index: 50;}
-    .imgProject img:nth-child(2){z-index: 49;}
-    .imgProject img:nth-child(3){z-index: 47;}
-    .imgProject img:nth-child(4){z-index: 46;}
-    .imgProject img:nth-child(5){z-index: 45;}
-    .imgProject img:last-child{z-index: 44;}
-    
-    .stopWatch{
+
+    .imgProject img:first-child {
+        z-index: 50;
+    }
+
+    .imgProject img:nth-child(2) {
+        z-index: 49;
+    }
+
+    .imgProject img:nth-child(3) {
+        z-index: 47;
+    }
+
+    .imgProject img:nth-child(4) {
+        z-index: 46;
+    }
+
+    .imgProject img:nth-child(5) {
+        z-index: 45;
+    }
+
+    .imgProject img:last-child {
+        z-index: 44;
+    }
+
+    .stopWatch {
         font-family: 'Century Gothic', sans-serif;
         font-size: 6.5rem;
     }
-    
-    .rangeslider{
+
+    .rangeslider {
         position: relative;
     }
-    
-    .rangeslider input{
+
+    .rangeslider input {
         margin: 20px 0;
     }
-    
-    .background{
+
+    .background {
         background: rgb(138, 224, 191);
         width: 0;
         height: 14px;
-        position : absolute;
-        top : calc(50% - 7px);
-        border-radius : 5px;
-        
-    }   
-    
-    /* 시작하기 및 포기 버튼 */
-    
-    .buttonStart, .buttonStop {
+        position: absolute;
+        top: calc(50% - 7px);
         border-radius: 5px;
-        font-size:0;
+
     }
-    .buttonStart{
+
+    /* 시작하기 및 포기 버튼 */
+
+    .buttonStart,
+    .buttonStop {
+        border-radius: 5px;
+        font-size: 0;
+    }
+
+    .buttonStart {
         background: url(../img/startBtn.png) #fff no-repeat center;
-        padding:30px;
-        border:none;
+        padding: 30px;
+        border: none;
         width: 300px;
     }
+
     .buttonStop {
         background: url(../img/stopBtn.png) no-repeat center;
         background-color: transparent;
         border: 4px solid #fff;
-        padding:20px;
+        padding: 20px;
         width: 200px;
     }
-    
-    
+
+
     /* 반응형 */
-    @media (min-width:801px) and (max-width: 1200px){
-        .imgProject{
-            width:400px;
-            height:400px;
+    @media (min-width:801px) and (max-width: 1200px) {
+        .imgProject {
+            width: 400px;
+            height: 400px;
         }
-    
+
         .imgProject img {
             width: 400px;
             height: 400px;
         }
     }
-    
-    @media (max-width: 800px){
-        .imgProject{
-            width:300px;
-            height:300px;
+
+    @media (max-width: 800px) {
+        .imgProject {
+            width: 300px;
+            height: 300px;
         }
-    
+
         .imgProject img {
             width: 300px;
             height: 300px;
         }
-        .buttonStart{
-            width:200px;
+
+        .buttonStart {
+            width: 200px;
         }
     }
+
     padding:20px;
 }
 
-#menu{
+#menu {
     font-size: 1.5rem;
     position: fixed;
     right: 50px;
-    top:20px;
+    top: 20px;
     z-index: 100;
 }
 
-#menu a{
+#menu a {
     color: #fff;
     text-decoration: none;
     transition: opacity .3s;
     opacity: .6;
 }
 
-#menu a:hover{
+#menu a:hover {
     opacity: 1;
 }
 
 
 /* 상단 텍스트 이미지 */
-.textImg{
-    margin:30px 0;
+.textImg {
+    margin: 30px 0;
 }
 
 
 /* 나무 이미지 */
 .mainSection {
-    margin:0 auto;
+    margin: 0 auto;
     text-align: center;
 }
 
-.imgProject{
-    position:relative;
+.imgProject {
+    position: relative;
     width: 470px;
     height: 470px;
     margin: 0 auto;
@@ -239,59 +267,79 @@ header{@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display
 }
 
 .imgProject img {
-    position:absolute;
-    top:0;
-    left:50%;
-    transform:translateX(-50%);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
- 
-.imgProject img:first-child{z-index: 50;}
-.imgProject img:nth-child(2){z-index: 49;}
-.imgProject img:nth-child(3){z-index: 47;}
-.imgProject img:nth-child(4){z-index: 46;}
-.imgProject img:nth-child(5){z-index: 45;}
-.imgProject img:last-child{z-index: 44;}
 
-.stopWatch{
+.imgProject img:first-child {
+    z-index: 50;
+}
+
+.imgProject img:nth-child(2) {
+    z-index: 49;
+}
+
+.imgProject img:nth-child(3) {
+    z-index: 47;
+}
+
+.imgProject img:nth-child(4) {
+    z-index: 46;
+}
+
+.imgProject img:nth-child(5) {
+    z-index: 45;
+}
+
+.imgProject img:last-child {
+    z-index: 44;
+}
+
+.stopWatch {
     font-family: 'Century Gothic', sans-serif;
     font-size: 6.5rem;
 }
 
-.rangeslider{
+.rangeslider {
     position: relative;
 }
 
-.rangeslider input{
+.rangeslider input {
     margin: 20px 0;
 }
 
-.background{
+.background {
     background: rgb(138, 224, 191);
     width: 0;
     height: 14px;
-    position : absolute;
-    top : calc(50% - 7px);
-    border-radius : 5px;
-    
-}   
+    position: absolute;
+    top: calc(50% - 7px);
+    border-radius: 5px;
+
+}
 
 /* 시작하기 및 포기 버튼 */
 
-.buttonStart, .buttonStop {
+.buttonStart,
+.buttonStop {
     border-radius: 5px;
-    font-size:0;
+    font-size: 0;
 }
-.buttonStart{
+
+.buttonStart {
     background: url(../img/startBtn.png) #fff no-repeat center;
-    padding:30px;
-    border:none;
+    padding: 30px;
+    border: none;
     width: 300px;
 }
+
 .buttonStop {
     background: url(../img/stopBtn.png) no-repeat center;
     background-color: transparent;
     border: 4px solid #fff;
-    padding:20px;
+    padding: 20px;
     width: 200px;
 }
 
@@ -299,67 +347,68 @@ header{@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display
 /* 서브페이지 */
 
 
-.dateOutline{
+.dateOutline {
     line-height: 1.5;
-    margin:80px 0;
+    margin: 80px 0;
 }
 
-.outline{
+.outline {
     width: 88px;
-    height:61px;
+    height: 61px;
     margin: 0 auto;
     background: url(../img/outline.png) no-repeat;
 }
 
-.date{
+.date {
     font-size: 1.5rem;
 }
 
-.fa-chevron-left{
+.fa-chevron-left {
     margin-right: 50px;
 }
-.fa-chevron-right{
+
+.fa-chevron-right {
     margin-left: 50px;
 }
 
 .mainContainer {
-    width:90%;
-    margin:0 auto;
+    width: 90%;
+    margin: 0 auto;
 }
 
-.forestTree{
-    margin:50px auto;
-    width:70%;
+.forestTree {
+    margin: 50px auto;
+    width: 70%;
 }
 
-.forestTree li{
+.forestTree li {
     display: inline-block;
-    margin:5px;
+    margin: 5px;
 }
 
 .chartContainer h2 {
     font-size: 2rem;
 }
 
-.statistics{
-    margin:15px 0;
+.statistics {
+    margin: 15px 0;
 }
 
-.statistics .totalTime{
+.statistics .totalTime {
     float: left;
     display: inline-block;
 }
 
-.statistics .treeNum{
+.statistics .treeNum {
     float: right;
     display: inline-block;
 }
 
 /* 반응형 */
-@media (min-width:801px) and (max-width: 1200px){
-    .imgProject{
-        width:400px;
-        height:400px;
+@media (min-width:801px) and (max-width: 1200px) {
+    .imgProject {
+        width: 400px;
+        height: 400px;
     }
 
     .imgProject img {
@@ -368,17 +417,18 @@ header{@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR&display
     }
 }
 
-@media (max-width: 800px){
-    .imgProject{
-        width:300px;
-        height:300px;
+@media (max-width: 800px) {
+    .imgProject {
+        width: 300px;
+        height: 300px;
     }
 
     .imgProject img {
         width: 300px;
         height: 300px;
     }
-    .buttonStart{
-        width:200px;
+
+    .buttonStart {
+        width: 200px;
     }
 }
