@@ -38,6 +38,12 @@ function buttonClick(e) { // 버튼 클릭시
   } else if(button.classList.contains('buttonStop')){
     startButton.classList.remove('displayNone');
     buttonstatus = "stop";
+
+  
+    $background.style.width = "0";
+  secondNum = fixedRangeValueNum * 60;
+  $displayTimer.textContent = minuteStr.length === 1 ? `0${fixedRangeValueNum}:00` : `${fixedRangeValueNum}:00`;
+    
     // 타이머
     clearInterval(timer);
     // 타이머
