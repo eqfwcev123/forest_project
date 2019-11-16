@@ -125,6 +125,7 @@ function timerFunc() {
 }
 
 
+
 // 이벤트 핸들러
 $oneOfButtons.onclick = buttonClick; // 버튼두개중 한개가 클릭되면
 $rangeSlider.oninput = setMinute; // slider 입력이 들어오면
