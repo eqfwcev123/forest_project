@@ -132,6 +132,15 @@ header {
 .gradient-val span {
   color: #ccc;
 }
+
 .slider{
   width: 450px;
+
+  /* 지호 수정 */
+  background-color: transparent;
+  /* 지호 수정 */
+}
+
+.time{
+  background: red;
 }
