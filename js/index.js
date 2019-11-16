@@ -13,7 +13,6 @@ const $imageList = document.querySelector(".imgProject");
 let timer; // setTimer
 let secondNum = 0;
 let minuteStr;
-let decidedsecond;
 let fixedRangeValueNum = 0;
 let buttonstatus = "stop";
 
