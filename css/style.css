@@ -19,7 +19,7 @@ body{
 
 
 /* 임시 숨김 처리 */
-.none{
+.displayNone{
     display: none;
 }
 
@@ -81,11 +81,23 @@ header{
     font-size: 6.5rem;
 }
 
+.rangeslider{
+    position: relative;
+}
 
 .rangeslider input{
     margin: 20px 0;
 }
 
+.background{
+    background: rgb(138, 224, 191);
+    width: 0;
+    height: 14px;
+    position : absolute;
+    top : calc(50% - 7px);
+    border-radius : 5px;
+    
+}   
 
 /* 시작하기 및 포기 버튼 */
 
