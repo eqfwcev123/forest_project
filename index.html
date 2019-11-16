@@ -10,7 +10,6 @@
     <link href="css/normalize.css" rel="stylesheet">
     <link href="css/slider.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
-    <script src="js/timer.js" defer></script>
 </head>
 <body>
     <header>
@@ -22,8 +21,8 @@
         <section class= "mainSection">
             <div class="textImg">
                 <img src="img/titleText01.png" alt="시작해볼까!" class="titleText">
-                <img src="img/titleText02.png" alt="힘내세요, 할 수 있어요!" class="titleText none">
-                <img src="img/titleText03.png" alt="축하합니다" class="titleText none">
+                <img src="img/titleText02.png" alt="힘내세요, 할 수 있어요!" class="titleText displayNone">
+                <img src="img/titleText03.png" alt="축하합니다" class="titleText displayNone">
             </div>
             <div class="imgProject">
                 <img src="img/mainImg01.png" alt="나무 0단계" class="treeImg01">
@@ -34,18 +33,20 @@
                 <img src="img/mainImg06.png" alt="나무 5단계" class="treeImg06">
             </div>
             <div class="stopWatch">
-                <div></div>
+                <div>00:00</div>
             </div>
             <article>
                 <div class="rangeslider">
-                    <input type="range" min="-100" max="0" value="0" class="range id="range">
+                    <input type="range" min="0" max="100" value="0" class="range">
+                    <div class="background"></div>
                 </div>
                 <div class="btn">
                     <button class="buttonStart">시작하기</button>
-                    <button class="buttonStop none">포기</button>
+                    <button class="buttonStop displayNone">포기</button>
                 </div>
             </article>
         </section>
     </main>
+    <script src="js/index.js" defer></script>
 </body>
 </html>
