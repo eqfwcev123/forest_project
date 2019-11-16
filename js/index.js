@@ -1,6 +1,5 @@
 // DOM
 
-let $stopwatchDisplay = document.querySelector('.stopWatch > div'); // 스탑워치를 표시할 display
 let $oneOfButtons = document.querySelector('.btn'); // button 두개
 let $rangeSlider = document.querySelector('.range'); // slider 
 let $background = document.querySelector('.background');
