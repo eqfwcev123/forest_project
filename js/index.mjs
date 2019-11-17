@@ -1,19 +1,21 @@
 // DOM
-
 let $oneOfButtons = document.querySelector('.btn'); // button 두개
 let $rangeSlider = document.querySelector('.range'); // slider 
 let $background = document.querySelector('.background');
 let $displayTimer = document.querySelector('.stopWatch > div');
 let $buttonStart = document.querySelector('.buttonStart');
 let $buttonStop = document.querySelector('.buttonStop');
-const $imageList = document.querySelector(".imgProject");
+let $treeImg = document.querySelector('.treeImg');
+let $titleText = document.querySelector('.titleText');
 
 // 변수
 let timer; // setTimer
 let secondNum = 0;
 let minuteStr;
 let fixedRangeValueNum = 0;
-let buttonstatus = "stop";
+let buttonstatus = "ready";
+
+var cumulativeTime = 0;
 
 // 이벤트 핸들러의 함수 정의
 
@@ -22,25 +24,36 @@ function buttonClick(e) { // 버튼 클릭시
   let startButton = button.previousElementSibling;
   let stopButton = button.nextElementSibling;
   
+  if(secondNum === 0){
+    $titleText.src = "img/titleText01.png";
+    return;
+  }
 
   button.classList.add('displayNone');
 
   if(button.classList.contains('buttonStart')) {
     stopButton.classList.remove('displayNone');
 
+    
+
+    $titleText.src = "img/titleText02.png";
     // 타이머
     buttonstatus = "start";
     timer = setInterval(timerFunc, 10); // timer 함수 실행
     // 타이머
+    $treeImg.src = `img/mainImg0${Math.floor(fixedRangeValueNum/20)+1}.png`;
 
   } else if(button.classList.contains('buttonStop')){
     startButton.classList.remove('displayNone');
     buttonstatus = "stop";
   
+    $titleText.src = "img/titleText04.png";
+
     $background.style.width = "0";
     secondNum = fixedRangeValueNum * 60;
     $displayTimer.textContent = minuteStr.length === 1 ? `0${fixedRangeValueNum}:00` : `${fixedRangeValueNum}:00`;
     
+    $treeImg.src = "img/mainImg06.png";
     // 타이머
     clearInterval(timer);
     // 타이머
@@ -54,28 +67,21 @@ function setMinute(e){
   }
 
   if (+e.currentTarget.value <= 19) {
-    console.log($imageList.children[0]);
-    $imageList.children[0].style.opacity = "1";
+    $treeImg.src = "img/mainImg01.png";
   }
   if (+e.currentTarget.value >= 20 && +e.currentTarget.value <= 39) {
-    $imageList.children[0].style.opacity = '0';
-    $imageList.children[0].style.transition = 'opacity 1s';
-    $imageList.children[1].style.opacity = "1";
+    $treeImg.src = "img/mainImg02.png";
   }
   if (+e.currentTarget.value > 39 && +e.currentTarget.value <= 59) {
-    $imageList.children[1].style.opacity = "0";
-    $imageList.children[1].style.transition = "opacity 1s";
-    $imageList.children[2].style.opacity = "1";
+    $treeImg.src = "img/mainImg03.png";
+    
   }
   if (+e.currentTarget.value > 59 && +e.currentTarget.value <= 79) {
-    $imageList.children[2].style.opacity = "0";
-    $imageList.children[2].style.transition = "opacity 1s";
-    $imageList.children[3].style.opacity = "1";
+    $treeImg.src = "img/mainImg04.png";
+
   }
   if (+e.currentTarget.value > 79 && +e.currentTarget.value <= 99) {
-    $imageList.children[3].style.opacity = "0";
-    $imageList.children[3].style.transition = "opacity 1s";
-    $imageList.children[4].style.opacity = "1";
+    $treeImg.src = "img/mainImg05.png";
   }
 
 
@@ -107,9 +113,7 @@ function timerFunc() {
   {
     $displayTimer.textContent = `0${Math.floor(secondNum/60)}:${secondNum%60}`;
   }
-  ////
-  // $background.style.width = `calc(calc(100% - 136px)/100 * ${Math.floor(secondNum/60)} + 34px * ${Math.floor})`
-
+  
   $background.style.width = `calc(calc(calc(100% - 136px)/100 * ${Math.floor(secondNum/60)} + 34px * ${Math.floor(secondNum/60)})`;
   $background.style.width = `calc(calc(calc(100% - 34px) / 100) * ${fixedRangeValueNum - Math.floor(secondNum/60)})`
   // $background.style.width = `calc(calc(100% - 136px)/3 * ${e.target.value} + 34px * ${e.target.value})`;
@@ -121,16 +125,19 @@ function timerFunc() {
     buttonstatus = "stop";
     secondNum = + fixedRangeValueNum * 60;
 
+    $titleText.src = "img/titleText03.png";
+
     $displayTimer.textContent = fixedRangeValueNum >= 10 ? `${fixedRangeValueNum}:00` : `0${fixedRangeValueNum}:00`;
     
+    cumulativeTime += fixedRangeValueNum;
     
     return;
   }
   secondNum = secondNum - 1;
 }
 
-
-
 // 이벤트 핸들러
 $oneOfButtons.onclick = buttonClick; // 버튼두개중 한개가 클릭되면
 $rangeSlider.oninput = setMinute; // slider 입력이 들어오면
+
+export{cumulativeTime};
