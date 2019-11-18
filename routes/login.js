@@ -3,13 +3,16 @@ const router = express.Router();
 const Login = require('../models/login'); //login.js 에서 모델을 가져와서 사용하기
 
 
-router.get("/", async (req, res) => {
-  try {
-    const login = await Login.find();
-    res.json(login);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+router.get("/", (req, res) => {
+    Login.findAll()
+      .then(todos => res.send(todos))
+      .catch(err => res.status(500).send(err));
+//   try {
+//     const login = await Login.find();
+//     res.json(login);
+//   } catch (err) {
+//     res.status(500).json({ message: err.message });
+//   }
 });
 
 router.post("/", async (req, res) => {
