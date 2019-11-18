@@ -1,98 +1,160 @@
-//   // if ($outerDiv.classList.contains("container")) return;
-// $container.addEventListener('mouseleave',e => {
-//   console.log(1);
-// })
+// DOM
+let $oneOfButtons = document.querySelector(".btn"); // button 두개
+let $rangeSlider = document.querySelector(".range"); // slider
+let $background = document.querySelector(".background");
+let $displayTimer = document.querySelector(".stopWatch > div");
+let $buttonStart = document.querySelector(".buttonStart");
+let $buttonStop = document.querySelector(".buttonStop");
+let $treeImg = document.querySelector(".treeImg");
+let $titleText = document.querySelector(".titleText");
 
-//Range Slider
-let $range = document.querySelector(".range"); // input요소
-const $display = document.querySelector(".display");
-const $btn = document.querySelector(".buttonStart"); // 버튼 요소
-const $imageList = document.querySelector(".imgProject");
+// 변수
+let timer; // setTimer
+let secondNum = 0;
+let minuteStr;
+let fixedRangeValueNum = 0;
+let buttonstatus = "ready";
 
-let myInterval = 0;
-let isTrue = true;
-let numToRemember = 0;
-// 시간 초기값. 만약에 사용자가 시간을 건드리지 않고 15분 동안만 컴퓨터를 사용하지 않을 경우 15분을 그대로 사용한다
-let minute = 15;
-let second = 0;
+var cumulativeTime = 0;
 
-// $output.innerHTML = $rangeSlider.value;
-// TODO: 이부분은 상관없다
+// 이벤트 핸들러의 함수 정의
 
-// 드래그로 분 설정 하는곳 minute 변수에 숫자 설정
-$range.oninput = e => {
-  if (isTrue === false) {
-    e.currentTarget.value = minute;
+function buttonClick(e) {
+  // 버튼 클릭시
+  let button = e.target;
+  let startButton = button.previousElementSibling;
+  let stopButton = button.nextElementSibling;
+
+  if (secondNum === 0) {
+    $titleText.src = "img/titleText01.png";
     return;
   }
-  minute = e.currentTarget.value;
-  $display.innerHTML = `${minute}:00`;
 
-  // TODO 슬라이더를 땡기면 시간이 이미지가 변하게된다.
-  if (+e.currentTarget.value <= 19) {
-    console.log($imageList.children[0]);
-    $imageList.children[0].style.opacity = "1";
-  }
-  if (+e.currentTarget.value >= 20 && +e.currentTarget.value <= 39) {
-    $imageList.children[0].style.opacity = '0';
-    $imageList.children[0].style.transition = 'opacity 1s';
-    $imageList.children[1].style.opacity = "1";
-  }
-  if (+e.currentTarget.value > 39 && +e.currentTarget.value <= 59) {
-    $imageList.children[1].style.opacity = "0";
-    $imageList.children[1].style.transition = "opacity 1s";
-    $imageList.children[2].style.opacity = "1";
-  }
-  if (+e.currentTarget.value > 59 && +e.currentTarget.value <= 79) {
-    $imageList.children[2].style.opacity = "0";
-    $imageList.children[2].style.transition = "opacity 1s";
-    $imageList.children[3].style.opacity = "1";
-  }
-  if (+e.currentTarget.value > 79 && +e.currentTarget.value <= 99) {
-    $imageList.children[3].style.opacity = "0";
-    $imageList.children[3].style.transition = "opacity 1s";
-    $imageList.children[4].style.opacity = "1";
-  }
+  button.classList.add("displayNone");
 
-  
+  if (button.classList.contains("buttonStart")) {
+    stopButton.classList.remove("displayNone");
 
+    $titleText.src = "img/titleText02.png";
+    // 타이머
+    buttonstatus = "start";
+    timer = setInterval(timerFunc, 10); // timer 함수 실행
+    // 타이머
+    $treeImg.src = `img/mainImg0${Math.floor(fixedRangeValueNum / 20) + 1}.png`;
+  } else if (button.classList.contains("buttonStop")) {
+    startButton.classList.remove("displayNone");
+    buttonstatus = "stop";
 
+    $titleText.src = "img/titleText04.png";
 
-};
+    $background.style.width = "0";
+    secondNum = fixedRangeValueNum * 60;
+    $displayTimer.textContent =
+      minuteStr.length === 1
+        ? `0${fixedRangeValueNum}:00`
+        : `${fixedRangeValueNum}:00`;
 
-// 시계
-function minusSecond() {
-  if (second === 0) {
-    minute -= 1;
-    second = 60;
-  }
-  second -= 1;
-
-  $display.innerHTML = `${minute < 10 ? `0${minute}` : minute}:${
-    second < 10 ? `0${second}` : second
-  }`;
-
-  console.log("[type,minute]", typeof minute, minute, typeof second, second);
-  console.log(second === 0);
-  console.log(minute === 0);
-
-  if (second === 0 && minute === 0) {
-    console.log("stop");
-    clearInterval(myInterval);
-    isTrue = true;
-    $display.innerHTML = `${numToRemember}:00`;
-    minute = numToRemember;
-    $slider.value = numToRemember;
+    $treeImg.src = "img/mainImg06.png";
+    // 타이머
+    clearInterval(timer);
+    // 타이머
   }
 }
 
-$btn.addEventListener("click", () => {
-  if (isTrue) {
-    myInterval = setInterval(minusSecond, 1000);
-    numToRemember = minute;
-    isTrue = false;
-  } else {
-    clearInterval(myInterval);
-    isTrue = true;
+function setMinute(e) {
+  if (buttonstatus === "start") {
+    $rangeSlider.value = `${fixedRangeValueNum}`;
+    return;
   }
-});
+
+  if (+e.currentTarget.value <= 19) {
+    $treeImg.src = "img/mainImg01.png";
+  }
+  if (+e.currentTarget.value >= 20 && +e.currentTarget.value <= 39) {
+    $treeImg.src = "img/mainImg02.png";
+  }
+  if (+e.currentTarget.value > 39 && +e.currentTarget.value <= 59) {
+    $treeImg.src = "img/mainImg03.png";
+  }
+  if (+e.currentTarget.value > 59 && +e.currentTarget.value <= 79) {
+    $treeImg.src = "img/mainImg04.png";
+  }
+  if (+e.currentTarget.value > 79 && +e.currentTarget.value <= 99) {
+    $treeImg.src = "img/mainImg05.png";
+  }
+
+  minuteStr = e.target.value;
+  fixedRangeValueNum = +minuteStr;
+  secondNum = +minuteStr * 60;
+  $displayTimer.textContent =
+    minuteStr.length === 1 ? `0${minuteStr}:00` : `${minuteStr}:00`;
+}
+
+// 1초마다 실행되는 함수
+function timerFunc() {
+  $displayTimer.textContent =
+    Math.floor(secondNum / 60) > 10
+      ? `${Math.floor(secondNum / 60)}:${secondNum % 60}`
+      : `0${Math.floor(secondNum / 60)}:${secondNum % 60}`;
+
+  if (Math.floor(secondNum / 60) >= 10 && Math.floor(secondNum % 60) >= 10) {
+    $displayTimer.textContent = `${Math.floor(secondNum / 60)}:${secondNum %
+      60}`;
+  } else if (
+    Math.floor(secondNum / 60) >= 10 &&
+    Math.floor(secondNum % 60) <= 10
+  ) {
+    $displayTimer.textContent = `${Math.floor(secondNum / 60)}:0${secondNum %
+      60}`;
+  } else if (
+    Math.floor(secondNum / 60) < 10 &&
+    Math.floor(secondNum % 60) < 10
+  ) {
+    $displayTimer.textContent = `0${Math.floor(secondNum / 60)}:0${secondNum %
+      60}`;
+  } else if (
+    Math.floor(secondNum / 60) < 10 &&
+    Math.floor(secondNum % 60) > 10
+  ) {
+    $displayTimer.textContent = `0${Math.floor(secondNum / 60)}:${secondNum %
+      60}`;
+  }
+
+  $background.style.width = `calc(calc(calc(100% - 136px)/100 * ${Math.floor(
+    secondNum / 60
+  )} + 34px * ${Math.floor(secondNum / 60)})`;
+  $background.style.width = `calc(calc(calc(100% - 34px) / 100) * ${fixedRangeValueNum -
+    Math.floor(secondNum / 60)})`;
+  // $background.style.width = `calc(calc(100% - 136px)/3 * ${e.target.value} + 34px * ${e.target.value})`;
+
+  if (Math.floor(secondNum / 60) === 0 && secondNum % 60 === 0) {
+    alert('checker');
+    axios.get('mongodb://localhost:4800/login')
+    clearInterval(timer);
+    $buttonStart.classList.remove("displayNone");
+    $buttonStop.classList.add("displayNone");
+    buttonstatus = "stop";
+    secondNum = +fixedRangeValueNum * 60;
+
+    $titleText.src = "img/titleText03.png";
+
+    $displayTimer.textContent =
+      fixedRangeValueNum >= 10
+        ? `${fixedRangeValueNum}:00`
+        : `0${fixedRangeValueNum}:00`;
+
+    cumulativeTime += fixedRangeValueNum;
+
+    return;
+  }
+  secondNum = secondNum - 1;
+}
+
+// 이벤트 핸들러
+$oneOfButtons.onclick = buttonClick; // 버튼두개중 한개가 클릭되면
+$rangeSlider.oninput = setMinute; // slider 입력이 들어오면
+
+export { cumulativeTime };
+
+
+$displayTimer.addEventListener
