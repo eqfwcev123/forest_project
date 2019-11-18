@@ -7,6 +7,7 @@ let $buttonStart = document.querySelector('.buttonStart');
 let $buttonStop = document.querySelector('.buttonStop');
 let $treeImg = document.querySelector('.treeImg');
 let $titleText = document.querySelector('.titleText');
+let $body = document.querySelector('.body');
 
 // 변수
 let timer; // setTimer
@@ -84,8 +85,6 @@ function setMinute(e){
     $treeImg.src = "img/mainImg05.png";
   }
 
-
-
   minuteStr = e.target.value;
   fixedRangeValueNum = +minuteStr;
   secondNum = +minuteStr * 60;
@@ -136,8 +135,25 @@ function timerFunc() {
   secondNum = secondNum - 1;
 }
 
+function bodyonmouseleave() {
+  console.log('hello');
+  $buttonStart.classList.remove('displayNone');
+  $buttonStop.classList.add('displayNone');  
+  buttonstatus = "stop";
+  
+    $titleText.src = "img/titleText04.png";
+
+    $background.style.width = "0";
+    secondNum = fixedRangeValueNum * 60;
+    $displayTimer.textContent = minuteStr.length === 1 ? `0${fixedRangeValueNum}:00` : `${fixedRangeValueNum}:00`;
+    
+    $treeImg.src = "img/mainImg06.png";
+    // 타이머
+    clearInterval(timer);
+}
+
 // 이벤트 핸들러
 $oneOfButtons.onclick = buttonClick; // 버튼두개중 한개가 클릭되면
 $rangeSlider.oninput = setMinute; // slider 입력이 들어오면
-
+$body.onmouseleave = bodyonmouseleave;
 export{cumulativeTime};

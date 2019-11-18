@@ -8,10 +8,10 @@ let year = today.getFullYear();
 let month = today.getMonth() + 1;
 
 // Dom
-$date = document.querySelector('.date');
-$decreaseButton = document.querySelector('.decreaseButton');
-$increaseButton = document.querySelector('.increaseButton');
-$totalTime = document.querySelector('.totalTime');
+let $date = document.querySelector('.date');
+let $decreaseButton = document.querySelector('.decreaseButton');
+let $increaseButton = document.querySelector('.increaseButton');
+let $totalTime = document.querySelector('.totalTime');
 
 // 이벤트 함수
 function render() {
@@ -45,7 +45,7 @@ function setcumulativeTime() {
 //이벤트
 $decreaseButton.onclick = decreaseButtonClick;
 $increaseButton.onclick = increaseButtonClick;
-window.onload = setcumulativeTime;
+// window.onload = setcumulativeTime;
 
 
 // page 2 끝
