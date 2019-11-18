@@ -18,4 +18,4 @@ const loginSchema = new mongoose.Schema({
 });
 
 // compiling loginSchema into a model (OR CREATING A MODEL)
-module.exports = mongoose.model('Login', loginSchema);
+module.exports = mongoose.model('Login', loginSchema);``
