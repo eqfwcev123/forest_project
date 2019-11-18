@@ -2,19 +2,15 @@ const express = require('express');
 const router = express.Router();
 const Login = require('../models/login'); //login.js 에서 모델을 가져와서 사용하기
 
-
+// 모든 사용자 정보 뿌리기.
 router.get("/", (req, res) => {
-    Login.findAll()
-      .then(todos => res.send(todos))
-      .catch(err => res.status(500).send(err));
-//   try {
-//     const login = await Login.find();
-//     res.json(login);
-//   } catch (err) {
-//     res.status(500).json({ message: err.message });
-//   }
+    Login.find()
+    .then(info => res.send(info))
+    .then(info => console.log(info))
+    .catch(err => res.status(500).send(err));
 });
 
+// 새로운 사용자 정보를 생성하지 않는 이상 크게 상관없슴. 시간나면 로그인 폼 만들어서 사용
 router.post("/", async (req, res) => {
   // login 은 도큐먼트이다.
   const login = new Login({
