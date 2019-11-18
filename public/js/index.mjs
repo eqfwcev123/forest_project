@@ -12,7 +12,7 @@ let $body = document.querySelector('.body');
 // 변수
 let timer; // setTimer
 let secondNum = 0;
-let minuteStr;
+let minuteStr =' ';
 let fixedRangeValueNum = 0;
 let buttonstatus = "ready";
 
@@ -84,6 +84,7 @@ function setMinute(e){
   if (+e.currentTarget.value > 79 && +e.currentTarget.value <= 99) {
     $treeImg.src = "img/mainImg05.png";
   }
+  $background.style.width = '0';
 
   minuteStr = e.target.value;
   fixedRangeValueNum = +minuteStr;
@@ -122,6 +123,9 @@ function timerFunc() {
     axios.get("http://localhost:4800/login")
       .then(res => console.log(res));
     clearInterval(timer);
+
+    
+
     $buttonStart.classList.remove('displayNone');
     $buttonStop.classList.add('displayNone');
     buttonstatus = "stop";
@@ -148,7 +152,6 @@ function bodyonmouseleave() {
     $background.style.width = "0";
     secondNum = fixedRangeValueNum * 60;
     $displayTimer.textContent = minuteStr.length === 1 ? `0${fixedRangeValueNum}:00` : `${fixedRangeValueNum}:00`;
-    
     $treeImg.src = "img/mainImg06.png";
     // 타이머
     clearInterval(timer);
