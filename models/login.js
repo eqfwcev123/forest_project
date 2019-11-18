@@ -13,7 +13,11 @@ const loginSchema = new mongoose.Schema({
   passWord: {
     type: Number,
     required: true
+  },
+  time: {
+    type: Number
   }
 });
 
+// compiling loginSchema into a model (OR CREATING A MODEL)
 module.exports = mongoose.model('Login', loginSchema);

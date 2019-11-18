@@ -16,7 +16,8 @@ router.post("/", async (req, res) => {
   const login = new Login({
     id: req.body.id,
     userName: req.body.userName,
-    passWord: req.body.password
+    passWord: req.body.passWord,
+    time: req.body.time
   });
 
   try {
