@@ -118,6 +118,9 @@ function timerFunc() {
   // $background.style.width = `calc(calc(100% - 136px)/3 * ${e.target.value} + 34px * ${e.target.value})`;
   
   if(Math.floor(secondNum/60) === 0 && secondNum%60 === 0){
+    // console.log(axios)
+    axios.get("http://localhost:4800/login")
+      .then(res => console.log(res));
     clearInterval(timer);
     $buttonStart.classList.remove('displayNone');
     $buttonStop.classList.add('displayNone');
@@ -136,7 +139,6 @@ function timerFunc() {
 }
 
 function bodyonmouseleave() {
-  console.log('hello');
   $buttonStart.classList.remove('displayNone');
   $buttonStop.classList.add('displayNone');  
   buttonstatus = "stop";
