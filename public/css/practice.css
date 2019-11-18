@@ -1,0 +1,146 @@
+@import url('https://fonts.googleapis.com/css?family=Source+Code+Pro');
+
+.stop-watch {
+  font-family: 'Source Code Pro', monospace;
+  text-align: center;
+  font-size: 3em;
+  padding: 30px;
+}
+
+.button {
+  width: 300px;
+  padding: 5px;
+  margin-top: 15px;
+  font-size: 36px;
+  font-weight: bold;
+  border: 2px solid #f44336;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+}
+
+.control:hover {
+  background: #f44336;
+  color: aliceblue;
+}
+
+
+/* 
+.container {
+  background-color: yellow;
+  display: block;
+  margin: 100px 300px;
+  width: 1000px;
+  height: 700px;
+  border: 2px solid red
+}
+.outerDiv{
+  margin:10px;
+  padding: 10px;
+  background-color: orange;
+} */
+/* 
+body{
+  background-color: green;
+  border: 0;
+  padding: 0;
+  margin: 0;
+} */
+
+.draggable{
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background-color: #fff700;
+  border: 5px solid orange;
+  cursor: pointer;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: pink;
+  font-family: monospace;
+  overflow: hidden;
+}
+
+header {
+  height: 70px;
+  line-height: 70px;
+  background: #252525;
+}
+
+.range-container {
+  position: absolute;
+  left: 30px;
+  top: 25px;
+  width: 300px;
+  height: 20px;
+}
+
+.range {
+  position: relative;
+  margin: 0 10px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.range-track {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  height: 4px;
+  background: #424242;
+  border-radius: 4px;
+}
+
+.range-track.fill {
+  width: 0%;
+  background: #4ac1ff;
+}
+
+.range-handle {
+  position: absolute;
+  left: -10px;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+.gradient {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 70px);
+  background-image: linear-gradient(0deg, #f1a829, #f14429);
+}
+
+.gradient-val {
+  color: rgb(49, 32, 32);
+  font-size: 14px;
+  font-weight: 800;
+  padding-left: 350px;
+  user-select: none;
+}
+
+.gradient-val span {
+  color: #ccc;
+}
+
+.slider{
+  width: 450px;
+
+  /* 지호 수정 */
+  background-color: transparent;
+  /* 지호 수정 */
+}
+
+.time{
+  background: red;
+}
