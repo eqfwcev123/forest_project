@@ -10,8 +10,12 @@
     <link href="css/style.css" rel="stylesheet">
     <link href="css/slider.css" rel="stylesheet">
     <script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
+<<<<<<< HEAD
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="module" src="./js/index.mjs" defer></script>
+=======
+    <script src="js/indexRefactoring.js" defer></script>
+>>>>>>> 610256a040356394c5ba8943b99017061adb57ba
 </head>
 
 <body class="body">
@@ -24,7 +28,7 @@
         <section class="mainSection">
             <h1 class="a11y-hiddden">자라나라 나무나무</h1>
             <div class="textImg">
-                <img src="img/titleText01.png" alt="문구" class="titleText">
+                <img src="img/titleText01.png" alt="문구" class="titleTextImg">
             </div>
             <div class="imgProject">
                 <img src="img/mainImg01.png" alt="나무 각 단계" class="treeImg">
@@ -35,11 +39,11 @@
             <article>
                 <div class="rangeslider">
                     <input type="range" min="0" max="100" value="0" class="range">
-                    <div class="background"></div>
+                    <div class="rangeSliderBackground"></div>
                 </div>
                 <div class="btn">
-                    <button class="buttonStart">시작하기</button>
-                    <button class="buttonStop displayNone">포기</button>
+                    <button class="startButton">시작하기</button>
+                    <button class="stopButton displayNone">포기</button>
                 </div>
             </article>
         </section>
