@@ -122,10 +122,10 @@ function timerFunc() {
   if(Math.floor(secondNum/60) === 0 && secondNum%60 === 0){
     // console.log(axios)
     // axios.patch("/login")
-      .then(res => result = res.data)
-      .then(result => result = result[0].time)
-      .then(result => console.log(result))
-      .catch(err => console.error(err))
+      // .then(res => result = res.data)
+      // .then(result => result = result[0].time)
+      // .then(result => console.log(result))
+      // .catch(err => console.error(err))
     clearInterval(timer);
 
     
