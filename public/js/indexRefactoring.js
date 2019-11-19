@@ -101,6 +101,6 @@ function timerFunc() {
 
 // Event Handler Start
 $buttons.onclick = buttonClick;
-// $body.onmouseleave = mouseleaveFromBody;
+$body.onmouseleave = mouseleaveFromBody;
 $rangeSlider.oninput = setMinute;
 // Event Handler Stop
