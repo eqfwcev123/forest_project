@@ -2,45 +2,35 @@ const express = require('express');
 const router = express.Router();
 const Login = require('../models/login'); //login.js 에서 모델을 가져와서 사용하기
 
-
-router.get("/", async (req, res) => {
-  try {
-    const login = await Login.find();
-    res.json(login);
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
+// 모든 사용자 정보 뿌리기.
+router.get("/", (req, res) => {
+    Login.find({})
+    .then(info => res.send(info))
+    .catch(err => res.status(500).send(err));
 });
 
-router.post("/", async (req, res) => {
-  // login 은 도큐먼트이다.
-  const login = new Login({
-    id: req.body.id,
-    userName: req.body.userName,
-    passWord: req.body.passWord,
-    time: req.body.time
-  });
-
-  try {
-    const newLogin = await login.save();
-    res.status(201).json(newLogin);
-  } catch (err) {
-    res.status(400).json({ message: err.message });
-  }
+// 새로운 사용자 정보를 생성하지 않는 이상 크게 상관없슴. 시간나면 로그인 폼 만들어서 사용
+router.post("/", (req, res) => {
+  Login.createUser(req.body)
+    .then(() => Login.findAll())
+    .then(result => res.send(result))
+    .catch(err => res.status(500).send(err));
 });
 
-router.patch("/", async(req,res) => {
-  // 인스턴스 생성
+router.patch("/", (req,res) => {
+  // body는 우리가 전송한 메시지 의 body 부분이다.
   const login = new Login({
     id : req.body.id,
     time : req.body.time
-  });
-  try{
-    const changeTimer = await Login.updateOne({id:login.id},{time:login.time});
-    res.status(201).json(changeTimer)
-  } catch(err) {
-    res.status(400).json({message:err.message});
-  }
+  })
+  //  console.log('RES', res);
+  // let test = Login.findOne().select("-_id time");
+   Login.updateUserById({"id" : login.id}, { time : login.time })
+    //  .then(console.log)
+     .then(result => res.send(result))
+    //  .then(res => console.log(res["req"].body))
+     .catch(err => res.status(500).send(err));
+    //  console.log(req.body);
 });
 
 

@@ -128,8 +128,8 @@ function timerFunc() {
   // $background.style.width = `calc(calc(100% - 136px)/3 * ${e.target.value} + 34px * ${e.target.value})`;
 
   if (Math.floor(secondNum / 60) === 0 && secondNum % 60 === 0) {
-    alert('checker');
-    axios.get('mongodb://localhost:4800/login')
+    //TODO Axios 현재 작동중
+    axios.get('http://localhosct:5100/login').then(res => console.log(res))
     clearInterval(timer);
     $buttonStart.classList.remove("displayNone");
     $buttonStop.classList.add("displayNone");
