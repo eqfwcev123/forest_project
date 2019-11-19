@@ -129,7 +129,12 @@ function timerFunc() {
 
   if (Math.floor(secondNum / 60) === 0 && secondNum % 60 === 0) {
     //TODO Axios 현재 작동중
-    axios.get('http://localhosct:5100/login').then(res => console.log(res))
+    axios.get("http://localhost:5100/login")
+      .then(res => result = res.data)
+      .then(result => result = result[0].time)
+      .then(result => result += fixedRangeValueNum)
+      .then(result => axios.patch("http://localhost:5100/login"{id:1,time:result}))
+      .catch(err => console.error(err))
     clearInterval(timer);
     $buttonStart.classList.remove("displayNone");
     $buttonStop.classList.add("displayNone");

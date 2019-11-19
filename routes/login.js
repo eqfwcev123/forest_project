@@ -22,7 +22,7 @@ router.patch("/", (req,res) => {
   const login = new Login({
     id : req.body.id,
     time : req.body.time
-  })
+  });
   //  console.log('RES', res);
   // let test = Login.findOne().select("-_id time");
    Login.updateUserById({"id" : login.id}, { time : login.time })

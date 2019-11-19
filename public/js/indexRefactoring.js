@@ -92,12 +92,21 @@ function timerFunc() {
     $titleTextImg.src = "./img/titleText03.png";
     $timerDisplay.textContent = fixedRangeValueNum >= 10 ? `${fixedRangeValueNum}:00` : `0${fixedRangeValueNum}:00`;
     secondNum = fixedRangeValueNum * 60;
-    axios.get("http://localhost:5100/login")
-      .then(res => result = res.data)
-      .then(result => result = result[0].time)
-      .then(result => result += fixedRangeValueNum)
-      .then(result => axios.patch("http://localhost:5100/login",{id:1,time:result}))
-      .catch(err => console.error(err))
+    axios
+      .get("http://localhost:5100/login")
+      .then(res => (result = res.data))
+      .then(result => (result = result[0].time))
+      .then(result => (result += fixedRangeValueNum))
+      .then(result =>
+        axios.patch("http://localhost:5100/login", {
+          id: 1,
+          time: [{
+            dateId: 1,
+            dateTime: 82173406 
+          }]
+        })
+      )
+      .catch(err => console.error(err));
     clearInterval(timer);
     buttonStatus = 'stop';
     return;

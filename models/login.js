@@ -1,23 +1,27 @@
 const mongoose = require("mongoose");
-const loginSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    required: true,
-  },
-  userName: {
-    type: String,
-    required: true,
-  },
-  passWord: {
-    type: Number,
-    required: true
-  },
-  time: {
-    type: Number
-  }
-},
+const loginSchema = new mongoose.Schema(
   {
-    timestamps:true
+    id: {
+      type: Number,
+      required: true
+    },
+    userName: {
+      type: String,
+      required: true
+    },
+    passWord: {
+      type: Number,
+      required: true
+    },
+    time: [
+      {
+        dateId: String,
+        dateTime: Number
+      }
+    ]
+  },
+  {
+    timestamps: true
   }
 );
 
