@@ -9,6 +9,7 @@ let $treeImg = document.querySelector('.treeImg');
 let $titleText = document.querySelector('.titleText');
 let $body = document.querySelector('.body');
 
+let result =[];
 // 변수
 let timer; // setTimer
 let secondNum = 0;
@@ -120,8 +121,11 @@ function timerFunc() {
   
   if(Math.floor(secondNum/60) === 0 && secondNum%60 === 0){
     // console.log(axios)
-    axios.get("http://localhost:4800/login")
-      .then(res => console.log(res));
+    // axios.patch("/login")
+      .then(res => result = res.data)
+      .then(result => result = result[0].time)
+      .then(result => console.log(result))
+      .catch(err => console.error(err))
     clearInterval(timer);
 
     
