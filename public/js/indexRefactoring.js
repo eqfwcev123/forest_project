@@ -11,14 +11,16 @@ const $stopButton = document.querySelector('.stopButton');
 // DOM Finish
 
 // Variable Start
-let secondNum; 
+let secondNum = 0; 
 let buttonStatus;
 let timer;
+let minuteStr = " ";
+let fixedRangeValueNum = 0;
 // Variable Stop
 
 // Event Function Start
 function buttonClick(e){
-  if(!secondNum){
+  if(secondNum === 0){
     $titleTextImg.src = "./img/titleText01.png";
     return;
   }
@@ -33,13 +35,13 @@ function buttonClick(e){
     $titleTextImg.src = './img/titleText02.png';
     $treeImg.src = `./img/mainImg0${Math.floor(fixedRangeValueNum/20)+1}.png`; 
     buttonStatus = "start";
-    stopButton.classList.remove('displayNone');
+    $stopButton.classList.remove('displayNone');
     timer = setInterval(timerFunc, 10);
-  }else if(button.classList.contains('.stopButton')){
+  }else if(button.classList.contains('stopButton')){
     $titleTextImg.src = "./img/titleText04.png";
     $rangeSliderBackground.style.width = '0';
     $timerDisplay.textContent = minuteStr.length === 1 ? `0${fixedRangeValueNum}:00`:`${fixedRangeValueNum}:00`;
-    $treeImg.src = "./img/mainImg06.png";
+    $treeImg.src = "./img/mainImg07.png";
     buttonStatus = "stop";
     startButton.classList.remove('displayNone');
     clearInterval(timer);
@@ -48,7 +50,7 @@ function buttonClick(e){
 }
 
 function setMinute(e){
-  if(buttonstatus === "start") {
+  if(buttonStatus === "start") {
     $rangeSlider.value = `${fixedRangeValueNum}`;
     return;
   }
@@ -58,15 +60,29 @@ function setMinute(e){
   secondNum = +minuteStr * 60;
   
   $treeImg.src = `./img/mainImg0${Math.floor(+minuteStr/20)+1}.png`;
-  $timerDisplay.textContent = minuteStr.length === 1 ? `0{minuteStr}:00` : `${minuteStr}:00`;
+  $timerDisplay.textContent = minuteStr.length === 1 ? `0${minuteStr}:00` : `${minuteStr}:00`;
   $rangeSliderBackground.style.width = '0';
 }
 
+function mouseleaveFromBody(){
+  $startButton.classList.remove('displayNone');
+  $stopButton.classList.add('displayNone');
+  $titleTextImg.src = "img/titleText04.png";
+  $rangeSliderBackground.style.width = "0";
+  $timerDisplay.textContent = minuteStr.length === 1? `0${fixedRangeValueNum}:00` : `${fixedRangeValueNum}:00`;
+  $treeImg.src = "./img/mainImg07.png";
+  buttonStatus = "stop";
+  secondNum = fixedRangeValueNum * 60;
+  clearInterval(timer);
+}
 // Event Function Finish
 
 // function declaration Start
 function timerFunc() {
+  secondNum--;
+
   $timerDisplay.textContent = `${Math.floor(secondNum/60) >= 10 ? Math.floor(secondNum/60) : '0' + Math.floor(secondNum/60)}:${secondNum%60 >= 10 ? Math.floor(secondNum%60) : '0' + Math.floor(secondNum%60)}`;
+  // $rangeSliderBackground.style.width = `calc(calc(calc(100% - 34px) / 100) * ${fixedRangeValueNum - Math.floor(secondNum/60)})`
   $rangeSliderBackground.style.width = `calc(calc(calc(100% - 34px) / 100) * ${fixedRangeValueNum - Math.floor(secondNum/60)})`
 
   if(Math.floor(secondNum/60) === 0 && secondNum%60 === 0){
@@ -79,14 +95,12 @@ function timerFunc() {
     buttonStatus = 'stop';
     return;
   }
-  second--;
+  
 }
 // function declaration Finish
 
-
-
-
 // Event Handler Start
 $buttons.onclick = buttonClick;
-// $rangeSlider.oninput = setMinute;
+// $body.onmouseleave = mouseleaveFromBody;
+$rangeSlider.oninput = setMinute;
 // Event Handler Stop

@@ -144,7 +144,7 @@ legend {
     margin: 20px 0;
 }
 
-.background {
+.rangeSliderBackground {
     background: rgb(138, 224, 191);
     width: 0;
     height: 14px;
