@@ -16,6 +16,7 @@ let buttonStatus;
 let timer;
 let minuteStr = " ";
 let fixedRangeValueNum = 0;
+let day = new Date().getDay();
 // Variable Stop
 
 // Event Function Start
@@ -86,26 +87,73 @@ function timerFunc() {
   $rangeSliderBackground.style.width = `calc(calc(calc(100% - 34px) / 100) * ${fixedRangeValueNum - Math.floor(secondNum/60)})`
 
   if(Math.floor(secondNum/60) === 0 && secondNum%60 === 0){
+    const DATE = new Date()
+    // let date = DATE.getDate();
+    let date = 1;
     let result = 0;
     $startButton.classList.remove('displayNone');
     $stopButton.classList.add('displayNone');
     $titleTextImg.src = "./img/titleText03.png";
     $timerDisplay.textContent = fixedRangeValueNum >= 10 ? `${fixedRangeValueNum}:00` : `0${fixedRangeValueNum}:00`;
     secondNum = fixedRangeValueNum * 60;
-    axios
-      .get("http://localhost:5100/login")
-      .then(res => (result = res.data))
-      .then(result => (result = result[0].time))
-      .then(result => (result += fixedRangeValueNum))
-      .then(result =>
-        axios.patch("http://localhost:5100/login", {
-          id: 1,
-          time: [{
-            dateId: 1,
-            dateTime: 82173406 
-          }]
-        })
-      )
+
+    axios.get("http://localhost:5100/login")
+      .then(res => result = res.data)
+      .then(result => result = result[0])
+      // .then(result => console.log(result.time))
+      // .then(result => result += fixedRangeValueNum)
+      .then(result => {
+          // axios.patch("http://localhost:5100/login", {
+          //   id: 1,
+          //   time: [
+              
+          //   ]
+          // });
+        if(!result.time) {
+          axios.patch("http://localhost:5100/login", {
+            id: 1,
+            time: [
+              {
+                id: date,
+                dateTime : result.time[result.time.length - 1].dateTime + fixedRangeValueNum
+              }
+            ]
+          });
+        } else {
+          axios.patch("http://localhost:5100/login", {
+            id: 1,
+            time: [
+              ...result.time,
+              {
+                id: date,
+                dateTime: fixedRangeValueNum
+              }
+            ]
+          });
+        }
+
+      // if(result.time[0] !== undefined) {
+      //   axios.patch("http://localhost:5100/login",{
+      //     id:1,
+      //     time:[
+      //       ...result.time,
+      //       {
+      //         dateId: date,
+      //         dateTime : 80
+      //       }
+      //     ]
+      //   })
+      // } else {
+      //   axios.patch("http://localhost:5100/login", {
+      //     // payload
+      //     id: 1,
+      //     time: [{
+      //       dateId: 11,
+      //       dateTime:40 //fixedRangeValueNum
+      //     }]
+      //   })
+      // }
+    })
       .catch(err => console.error(err));
     clearInterval(timer);
     buttonStatus = 'stop';
