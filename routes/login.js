@@ -23,12 +23,10 @@ router.patch("/", (req,res) => {
     id : req.body.id,
     time : req.body.time
   });
-  //  console.log('RES', res);
   // let test = Login.findOne().select("-_id time");
-   Login.updateUserById({"id" : login.id}, { time : login.time })
+   Login.updateUserById({id : login.id}, { time : login.time })
      .then(result => res.send(result))
      .catch(err => res.status(500).send(err));
-    //  console.log(req.body);
 });
 
 

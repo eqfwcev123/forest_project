@@ -37,7 +37,7 @@ function buttonClick(e){
     $treeImg.src = `./img/mainImg0${Math.floor(fixedRangeValueNum/20)+1}.png`; 
     buttonStatus = "start";
     $stopButton.classList.remove('displayNone');
-    timer = setInterval(timerFunc, 10);
+    timer = setInterval(timerFunc, 1);
   }else if(button.classList.contains('stopButton')){
     $titleTextImg.src = "./img/titleText04.png";
     $rangeSliderBackground.style.width = '0';
@@ -88,8 +88,8 @@ function timerFunc() {
 
   if(Math.floor(secondNum/60) === 0 && secondNum%60 === 0){
     const DATE = new Date()
-    // let date = DATE.getDate();
-    let date = 1;
+    let date = DATE.getDate();
+    // let date = 1;
     let result = 0;
     $startButton.classList.remove('displayNone');
     $stopButton.classList.add('displayNone');
@@ -103,30 +103,42 @@ function timerFunc() {
       // .then(result => console.log(result.time))
       // .then(result => result += fixedRangeValueNum)
       .then(result => {
+          // 초기화
           // axios.patch("http://localhost:5100/login", {
           //   id: 1,
           //   time: [
-              
           //   ]
           // });
-        if(!result.time) {
-          axios.patch("http://localhost:5100/login", {
-            id: 1,
-            time: [
-              {
-                id: date,
-                dateTime : result.time[result.time.length - 1].dateTime + fixedRangeValueNum
-              }
-            ]
-          });
+
+
+        if (result.time.length !== 0) { //result.time은 빈 배열이다
+          console.log('성공: ',result.time);
+
+          // date 는 20이다
+          console.log(date);
+          result.time.filter(time => time.dateId === date);
+          console.log(result.time.filter(time => time.dateId === date)[0].dateId);
+          console.log()
+          // axios.patch("http://localhost:5100/login", {
+          //   id: 1,
+          //   time: [
+          //     ...result.time,
+          //     {
+          //       dateId : date,
+          //       dateTime : result.time[result.time.length - 1].dateTime + fixedRangeValueNum
+          //     }
+          //   ]
+          // });
         } else {
+          //추가
+          console.log("실패, ", result.time);
           axios.patch("http://localhost:5100/login", {
             id: 1,
             time: [
               ...result.time,
               {
-                id: date,
-                dateTime: fixedRangeValueNum
+                dateId : date,
+                dateTime : fixedRangeValueNum
               }
             ]
           });

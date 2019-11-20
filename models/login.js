@@ -3,7 +3,8 @@ const loginSchema = new mongoose.Schema(
   {
     id: {
       type: Number,
-      required: true
+      required: true,
+      unique: true
     },
     userName: {
       type: String,
@@ -15,7 +16,7 @@ const loginSchema = new mongoose.Schema(
     },
     time: [
       {
-        dateId: String,
+        dateId: Number,
         dateTime: Number
       }
     ]
@@ -25,14 +26,13 @@ const loginSchema = new mongoose.Schema(
   }
 );
 
-
 //POST
 loginSchema.statics.createUser = function(payload) {
   // this === Model Login
   const user = new this(payload);
   return user.save();
   // todo.save returns a promise
-}
+};
 
 // Find All
 loginSchema.statics.findAll = function() {
@@ -47,11 +47,11 @@ loginSchema.statics.findAll = function() {
   ).sort({ id: "desc" });
 };
 
-
 //PATCH
 loginSchema.statics.updateUserById = function(id, payload) {
-  return this.findOneAndUpdate(id,payload);
-}
+  return this.findOneAndUpdate(id, payload,{_id:false});
+  // return this.update(id, payload,{_id:false});
+};
 
 // compiling loginSchema into a model (OR CREATING A MODEL)
-module.exports = mongoose.model('Login', loginSchema);
+module.exports = mongoose.model("Login", loginSchema);
