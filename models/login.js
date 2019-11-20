@@ -1,26 +1,30 @@
 const mongoose = require("mongoose");
-const loginSchema = new mongoose.Schema({
-  id: {
-    type: Number,
-    required: true,
-  },
-  userName: {
-    type: String,
-    required: true,
-  },
-  passWord: {
-    type: Number,
-    required: true
-  },
-  time: {
-    type: Number
-  }
-},
+const loginSchema = new mongoose.Schema(
   {
-    timestamps:true
+    id: {
+      type: Number,
+      required: true,
+      unique: true
+    },
+    userName: {
+      type: String,
+      required: true
+    },
+    passWord: {
+      type: Number,
+      required: true
+    },
+    time: [
+      {
+        dateId: Number,
+        dateTime: Number
+      }
+    ]
+  },
+  {
+    timestamps: true
   }
 );
-
 
 //POST
 loginSchema.statics.createUser = function(payload) {
@@ -28,7 +32,7 @@ loginSchema.statics.createUser = function(payload) {
   const user = new this(payload);
   return user.save();
   // todo.save returns a promise
-}
+};
 
 // Find All
 loginSchema.statics.findAll = function() {
@@ -43,14 +47,11 @@ loginSchema.statics.findAll = function() {
   ).sort({ id: "desc" });
 };
 
-loginSchema.statics.getTime = function(){
-  return this.find({})
-}
-
 //PATCH
 loginSchema.statics.updateUserById = function(id, payload) {
-  return this.findOneAndUpdate(id,payload);
-}
+  return this.findOneAndUpdate(id, payload,{_id:false});
+  // return this.update(id, payload,{_id:false});
+};
 
 // compiling loginSchema into a model (OR CREATING A MODEL)
-module.exports = mongoose.model('Login', loginSchema);
+module.exports = mongoose.model("Login", loginSchema);

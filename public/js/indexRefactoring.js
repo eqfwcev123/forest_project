@@ -16,6 +16,7 @@ let buttonStatus = "ready";
 let timer;
 let minuteStr = " ";
 let fixedRangeValueNum = 0;
+let day = new Date().getDay();
 // Variable Stop
 
 // Event Function Start
@@ -36,7 +37,7 @@ function buttonClick(e){
     $treeImg.src = `./img/mainImg0${Math.floor(fixedRangeValueNum/20)+1}.png`; 
     buttonStatus = "start";
     $stopButton.classList.remove('displayNone');
-    timer = setInterval(timerFunc, 10);
+    timer = setInterval(timerFunc, 1);
   }else if(button.classList.contains('stopButton')){
     $titleTextImg.src = "./img/titleText04.png";
     $rangeSliderBackground.style.width = '0';
@@ -87,18 +88,86 @@ function timerFunc() {
   $rangeSliderBackground.style.width = `calc(calc(calc(100% - 34px) / 100) * ${fixedRangeValueNum - Math.floor(secondNum/60)})`
 
   if(Math.floor(secondNum/60) === 0 && secondNum%60 === 0){
+    const DATE = new Date()
+    let date = DATE.getDate();
+    // let date = 1;
     let result = 0;
     $startButton.classList.remove('displayNone');
     $stopButton.classList.add('displayNone');
     $titleTextImg.src = "./img/titleText03.png";
     $timerDisplay.textContent = fixedRangeValueNum >= 10 ? `${fixedRangeValueNum}:00` : `0${fixedRangeValueNum}:00`;
     secondNum = fixedRangeValueNum * 60;
+
     axios.get("http://localhost:5100/login")
       .then(res => result = res.data)
-      .then(result => result = result[0].time)
-      .then(result => result += fixedRangeValueNum)
-      .then(result => axios.patch("http://localhost:5100/login",{id:1,time:result}))
-      .catch(err => console.error(err))
+      .then(result => result = result[0])
+      // .then(result => console.log(result.time))
+      // .then(result => result += fixedRangeValueNum)
+      .then(result => {
+          // 초기화
+          // axios.patch("http://localhost:5100/login", {
+          //   id: 1,
+          //   time: [
+          //   ]
+          // });
+
+
+        if (result.time.length !== 0) { //result.time은 빈 배열이다
+          console.log('성공: ',result.time);
+
+          // date 는 20이다
+          console.log(date);
+          result.time.filter(time => time.dateId === date);
+          console.log(result.time.filter(time => time.dateId === date)[0].dateId);
+          console.log()
+          // axios.patch("http://localhost:5100/login", {
+          //   id: 1,
+          //   time: [
+          //     ...result.time,
+          //     {
+          //       dateId : date,
+          //       dateTime : result.time[result.time.length - 1].dateTime + fixedRangeValueNum
+          //     }
+          //   ]
+          // });
+        } else {
+          //추가
+          console.log("실패, ", result.time);
+          axios.patch("http://localhost:5100/login", {
+            id: 1,
+            time: [
+              ...result.time,
+              {
+                dateId : date,
+                dateTime : fixedRangeValueNum
+              }
+            ]
+          });
+        }
+
+      // if(result.time[0] !== undefined) {
+      //   axios.patch("http://localhost:5100/login",{
+      //     id:1,
+      //     time:[
+      //       ...result.time,
+      //       {
+      //         dateId: date,
+      //         dateTime : 80
+      //       }
+      //     ]
+      //   })
+      // } else {
+      //   axios.patch("http://localhost:5100/login", {
+      //     // payload
+      //     id: 1,
+      //     time: [{
+      //       dateId: 11,
+      //       dateTime:40 //fixedRangeValueNum
+      //     }]
+      //   })
+      // }
+    })
+      .catch(err => console.error(err));
     clearInterval(timer);
     buttonStatus = 'stop';
     return;
