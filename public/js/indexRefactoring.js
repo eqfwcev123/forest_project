@@ -65,7 +65,7 @@ function setMinute(e){
 }
 
 function mouseleaveFromBody(){
-  if(buttonStatus === "ready") return;
+  if(buttonStatus === "ready" || buttonStatus === "stop") return;
   $startButton.classList.remove('displayNone');
   $stopButton.classList.add('displayNone');
   $titleTextImg.src = "img/titleText04.png";
