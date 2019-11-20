@@ -26,9 +26,7 @@ router.patch("/", (req,res) => {
   //  console.log('RES', res);
   // let test = Login.findOne().select("-_id time");
    Login.updateUserById({"id" : login.id}, { time : login.time })
-    //  .then(console.log)
      .then(result => res.send(result))
-    //  .then(res => console.log(res["req"].body))
      .catch(err => res.status(500).send(err));
     //  console.log(req.body);
 });

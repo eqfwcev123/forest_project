@@ -47,9 +47,6 @@ loginSchema.statics.findAll = function() {
   ).sort({ id: "desc" });
 };
 
-loginSchema.statics.getTime = function(){
-  return this.find({})
-}
 
 //PATCH
 loginSchema.statics.updateUserById = function(id, payload) {
