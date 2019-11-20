@@ -110,25 +110,28 @@ function timerFunc() {
           //   ]
           // });
 
-
         if (result.time.length !== 0) { //result.time은 빈 배열이다
           console.log('성공: ',result.time);
 
           // date 는 20이다
-          console.log(date);
-          result.time.filter(time => time.dateId === date);
-          console.log(result.time.filter(time => time.dateId === date)[0].dateId);
-          console.log()
-          // axios.patch("http://localhost:5100/login", {
-          //   id: 1,
-          //   time: [
-          //     ...result.time,
-          //     {
-          //       dateId : date,
-          //       dateTime : result.time[result.time.length - 1].dateTime + fixedRangeValueNum
-          //     }
-          //   ]
-          // });
+          // console.log(date);
+          // result.time.filter(time => time.dateId === date);
+          if(result.time.filter(time => time.dateId === date).length !== 0){
+            // 데이터베이스에 우리가 입력하는 데이터의 id 가 있을경우
+            axios.patch("http://localhost:5100/login", {
+              id: 1,
+              time: [
+                {...result.time,
+                ...{
+                  dateId: date,
+                  dateTime:result.time[result.time.length - 1].dateTime + fixedRangeValueNum
+                }}
+              ]
+            });
+          } else {
+            //데이터베이스에 우리가 입력하고자 하는 값이 없을경우
+            console.log('찾고자 하는 데이터가 데이터베이스에 없습니다.');
+          }
         } else {
           //추가
           console.log("실패, ", result.time);
