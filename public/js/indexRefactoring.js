@@ -12,7 +12,7 @@ const $stopButton = document.querySelector('.stopButton');
 
 // Variable Start
 let secondNum = 0; 
-let buttonStatus;
+let buttonStatus = "ready";
 let timer;
 let minuteStr = " ";
 let fixedRangeValueNum = 0;
@@ -65,6 +65,7 @@ function setMinute(e){
 }
 
 function mouseleaveFromBody(){
+  if(buttonStatus === "ready") return;
   $startButton.classList.remove('displayNone');
   $stopButton.classList.add('displayNone');
   $titleTextImg.src = "img/titleText04.png";
