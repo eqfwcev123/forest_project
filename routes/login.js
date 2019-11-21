@@ -2,13 +2,14 @@ const express = require('express');
 const router = express.Router();
 const Login = require('../models/login'); 
 
+//GET
 router.get("/", (req, res) => {
     Login.find({})
     .then(info => res.send(info))
     .catch(err => res.status(500).send(err));
 });
 
-
+//POST
 router.post("/", (req, res) => {
   Login.createUser(req.body)
     .then(() => Login.findAll())
@@ -16,6 +17,7 @@ router.post("/", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
+//PATCH
 router.patch("/", (req,res) => {
   const login = new Login({
     id : req.body.id,
@@ -25,6 +27,5 @@ router.patch("/", (req,res) => {
      .then(result => res.send(result))
      .catch(err => res.status(500).send(err));
 });
-
 
 module.exports = router;
