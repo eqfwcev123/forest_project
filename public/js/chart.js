@@ -1,4 +1,17 @@
-var ctx = document.getElementById('myChart').getContext('2d');
+const ctx = document.querySelector('.myChart').getContext('2d');
+
+let arr = [];
+let getVal = function() {
+    return axios
+      .get("http://localhost:5100/login")
+      .then(res => result = res.data)
+      .then(result => result = result[0].time) //eqfwcev123 계정
+      .then(result => result.sort((resultA, resultB) => resultA.dateId - resultB.dateId))
+      .then(result => result.forEach(item => arr.push(item.dateTime)))
+}
+getVal();
+console.log(arr);
+
 var chart = new Chart(ctx, {
     // The type of chart we want to create
     type: 'bar',
@@ -10,7 +23,7 @@ var chart = new Chart(ctx, {
             label: 'My First dataset',
             backgroundColor: 'rgb(255, 255, 255)',
             borderColor: 'rgb(255, 255, 255)',
-            data: [25, 50, 100, 75, 50, 25, 50, 75, 25, 50, 75, 50, 75, 25, 75, 25, 50, 100, 75, 50, 25, 100, 75, 25, 50, 75, 50, 75, 25, 50]
+            data: arr
         }]
     },
 
