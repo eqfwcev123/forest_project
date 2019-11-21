@@ -194,6 +194,9 @@ function timerFunc() {
 // function declaration Finish
 function testfunc() {
   date = date + 1;
+  if(date > 31){
+    date = 1;
+  }
   console.log(date);
 }
 // Event Handler Start
