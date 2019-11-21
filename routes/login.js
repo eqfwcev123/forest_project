@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const Login = require('../models/login'); //login.js 에서 모델을 가져와서 사용하기
+const Login = require('../models/login'); 
 
-// 모든 사용자 정보 뿌리기.
 router.get("/", (req, res) => {
     Login.find({})
     .then(info => res.send(info))
@@ -15,7 +14,6 @@ router.get("/sort", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-// 새로운 사용자 정보를 생성하지 않는 이상 크게 상관없슴. 시간나면 로그인 폼 만들어서 사용
 router.post("/", (req, res) => {
   Login.createUser(req.body)
     .then(() => Login.findAll())
@@ -24,12 +22,10 @@ router.post("/", (req, res) => {
 });
 
 router.patch("/", (req,res) => {
-  // body는 우리가 전송한 메시지 의 body 부분이다.
   const login = new Login({
     id : req.body.id,
     time : req.body.time
   });
-  // let test = Login.findOne().select("-_id time");
    Login.updateUserById({id : login.id}, { time : login.time })
      .then(result => res.send(result))
      .catch(err => res.status(500).send(err));
