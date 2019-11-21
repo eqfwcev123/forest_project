@@ -1,15 +1,17 @@
-// page 2 시작
-
-let num = 0;
-const today = new Date();
-let year = today.getFullYear();
-let month = today.getMonth() + 1;
-// Dom
+// DOM Start
 const $date = document.querySelector(".date");
 const $decreaseButton = document.querySelector(".decreaseButton");
 const $increaseButton = document.querySelector(".increaseButton");
 const $totalTime = document.querySelector(".totalTime");
-// 이벤트 함수
+// DOM Finish
+
+// Variable Start
+const today = new Date();
+let year = today.getFullYear();
+let month = today.getMonth() + 1;
+// Variable Stop
+
+// function declaration Start
 function render() {
   if (month > 12) {
     year++;
@@ -21,6 +23,9 @@ function render() {
   }
   $date.textContent = `${year}년 ${month < 10 ? "0" + month : month}월`;
 }
+// function declaration Finish
+
+// Event Function Start
 function decreaseButtonClick() {
   month--;
   render();
@@ -36,9 +41,11 @@ function setcumulativeTime() {
     .then(result => result.reduce((acc,cur) =>acc+cur.dateTime,0))
     .then(result => $totalTime.textContent = `Total Time: ${result}`)
 }
-//이벤트
+// Event Function Finish
+
+// Event Handler Start
 $decreaseButton.onclick = decreaseButtonClick;
 $increaseButton.onclick = increaseButtonClick;
 window.onload = setcumulativeTime;
-// page 2 끝
+// Event Handler Stop
 

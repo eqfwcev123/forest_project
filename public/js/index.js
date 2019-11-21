@@ -8,11 +8,7 @@ const $rangeSliderBackground = document.querySelector(".rangeSliderBackground");
 const $buttons = document.querySelector(".btn");
 const $startButton = document.querySelector(".startButton");
 const $stopButton = document.querySelector(".stopButton");
-
-//test
-const $button = document.querySelector(".bttn");
-const DATE = new Date();
-var date = DATE.getDate();
+const $dateButton = document.querySelector(".dateButton");
 // DOM Finish
 
 // Variable Start
@@ -21,7 +17,7 @@ let buttonStatus = "ready";
 let timer;
 let minuteStr = " ";
 let fixedRangeValueNum = 0;
-
+let date = new Date().getDate();
 // Variable Stop
 
 // Event Function Start
@@ -32,8 +28,6 @@ function buttonClick(e) {
   }
 
   let button = e.target;
-  let startButton = button.previousElementSibling;
-  let stopButton = button.nextElementsibling;
 
   button.classList.add("displayNone");
 
@@ -53,7 +47,7 @@ function buttonClick(e) {
         : `${fixedRangeValueNum}:00`;
     $treeImg.src = "./img/mainImg07.png";
     buttonStatus = "stop";
-    startButton.classList.remove("displayNone");
+    $startButton.classList.remove("displayNone");
     clearInterval(timer);
     secondNum = fixedRangeValueNum * 60;
   }
@@ -90,6 +84,14 @@ function mouseleaveFromBody() {
   secondNum = fixedRangeValueNum * 60;
   clearInterval(timer);
 }
+
+function increaseDate() {
+  date = date + 1;
+  if(date > 31){
+    date = 1;
+  }
+  console.log(date);
+}
 // Event Function Finish
 
 // function declaration Start
@@ -119,7 +121,7 @@ function timerFunc() {
         ? `${fixedRangeValueNum}:00`
         : `0${fixedRangeValueNum}:00`;
     secondNum = fixedRangeValueNum * 60;
-
+    
     axios
       .get("http://localhost:5100/login")
       .then(res => (result = res.data))
@@ -131,23 +133,12 @@ function timerFunc() {
         //   time: [
         //   ]
         // });
-
-        if (result.time.length !== 0) {
-          console.log("성공: ", result.time);
+        if (result.time.length !== 0) { // 데이터베이스에 데이터 있을때 
+          // 갱신
           if (result.time.filter(item => date === item.dateId).length !== 0) {
-            console.log("현재날짜와 같은 데이터가 데이터베이스에 있어");
             axios.patch("http://localhost:5100/login", {
               id: 1,
               time: [
-                // ...{...result.time},
-                // ...{
-                //   dateId : 19,
-                //   dateTime : result.time[result.time.length - 1].dateTime + fixedRangeValueNum
-                //   }
-
-                // Server
-                // result.time은 time 배열 값이다.
-
                 ...result.time.filter(item => date !== item.dateId),
                 {
                   dateId: date,
@@ -157,8 +148,7 @@ function timerFunc() {
                 }
               ]
             });
-          } else {
-            console.log("ifelse만족");
+          } else { // 추가
             axios.patch("http://localhost:5100/login", {
               id: 1,
               time: [
@@ -171,8 +161,7 @@ function timerFunc() {
             });
           }
         } else {
-          //추가
-          console.log("실패, ", result.time);
+          // 데이터베이스에 데이터 없을때 데이터 추가
           axios.patch("http://localhost:5100/login", {
             id: 1,
             time: [
@@ -185,25 +174,17 @@ function timerFunc() {
           });
         }
       })
-      .catch(err => console.error(err));
+    .catch(err => console.error(err));
     clearInterval(timer);
     buttonStatus = "stop";
     return;
   }
 }
 // function declaration Finish
-function testfunc() {
-  date = date + 1;
-  if(date > 31){
-    date = 1;
-  }
-  console.log(date);
-}
+
 // Event Handler Start
 $buttons.onclick = buttonClick;
 $body.onmouseleave = mouseleaveFromBody;
 $rangeSlider.oninput = setMinute;
+$dateButton.onclick = increaseDate;
 // Event Handler Stop
-
-//test
-$button.onclick = testfunc;

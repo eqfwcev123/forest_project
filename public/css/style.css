@@ -58,7 +58,6 @@ legend {
     display: none;
 }
 
-
 #menu {
     font-size: 1.5rem;
     /* 수정 */
@@ -238,6 +237,9 @@ legend {
     display: inline-block;
 }
 
+.myChart{
+    height: 40px;
+}
 /* 반응형 */
 @media (min-width:801px) and (max-width: 1200px) {
     .imgProject {
