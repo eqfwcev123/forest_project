@@ -28,10 +28,9 @@ const loginSchema = new mongoose.Schema(
 
 //POST
 loginSchema.statics.createUser = function(payload) {
-  // this === Model Login
+  // this === Model
   const user = new this(payload);
   return user.save();
-  // todo.save returns a promise
 };
 
 // Find All
