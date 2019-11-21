@@ -8,11 +8,7 @@ router.get("/", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
-router.get("/sort", (req, res) => {
-    Login.find({})
-    .then(info => res.send(info))
-    .catch(err => res.status(500).send(err));
-});
+
 
 router.post("/", (req, res) => {
   Login.createUser(req.body)
