@@ -1,5 +1,5 @@
 // page 2 시작
-// import {cumulativeTime} from './index.mjs';
+
 let num = 0;
 const today = new Date();
 let year = today.getFullYear();
@@ -30,10 +30,15 @@ function increaseButtonClick() {
   render();
 }
 function setcumulativeTime() {
-  $totalTime.textContent = `${cumulativeTime}`;
+  axios.get("http://localhost:5100/login")
+    .then(result => result = result.data)
+    .then(result => result = result[0].time)
+    .then(result => result.reduce((acc,cur) =>acc+cur.dateTime,0))
+    .then(result => console.log(result))
 }
 //이벤트
 $decreaseButton.onclick = decreaseButtonClick;
 $increaseButton.onclick = increaseButtonClick;
 window.onload = setcumulativeTime;
 // page 2 끝
+
