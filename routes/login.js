@@ -9,7 +9,6 @@ router.get("/", (req, res) => {
 });
 
 
-
 router.post("/", (req, res) => {
   Login.createUser(req.body)
     .then(() => Login.findAll())
