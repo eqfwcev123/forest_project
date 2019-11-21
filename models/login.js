@@ -28,10 +28,9 @@ const loginSchema = new mongoose.Schema(
 
 //POST
 loginSchema.statics.createUser = function(payload) {
-  // this === Model Login
+  // this === Model
   const user = new this(payload);
   return user.save();
-  // todo.save returns a promise
 };
 
 // Find All
@@ -50,7 +49,6 @@ loginSchema.statics.findAll = function() {
 //PATCH
 loginSchema.statics.updateUserById = function(id, payload) {
   return this.findOneAndUpdate(id, payload,{_id:false});
-  // return this.update(id, payload,{_id:false});
 };
 
 // compiling loginSchema into a model (OR CREATING A MODEL)

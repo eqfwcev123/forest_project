@@ -110,7 +110,6 @@ function timerFunc() {
     Math.floor(secondNum / 60)})`;
 
   if (Math.floor(secondNum / 60) === 0 && secondNum % 60 === 0) {
-    // let date = 1;
     let result = 0;
     $startButton.classList.remove("displayNone");
     $stopButton.classList.add("displayNone");
@@ -125,8 +124,6 @@ function timerFunc() {
       .get("http://localhost:5100/login")
       .then(res => (result = res.data))
       .then(result => (result = result[0]))
-      // .then(result => console.log(result.time))
-      // .then(result => result += fixedRangeValueNum)
       .then(result => {
         // 초기화
         // axios.patch("http://localhost:5100/login", {
@@ -136,17 +133,7 @@ function timerFunc() {
         // });
 
         if (result.time.length !== 0) {
-          //result.time은 빈 배열이다
           console.log("성공: ", result.time);
-
-          // date = 현재 일자
-          // result.time.dateId = 데이터 베이스에 있는 dateId
-
-          // console.log(date === result.time.filter(time => time.dateId === date)[0].dateId);
-
-          // if(date === result.time.filter(time => time.dateId === date)[0].dateId){}
-
-          // result.time  = []
           if (result.time.filter(item => date === item.dateId).length !== 0) {
             console.log("현재날짜와 같은 데이터가 데이터베이스에 있어");
             axios.patch("http://localhost:5100/login", {
@@ -197,30 +184,6 @@ function timerFunc() {
             ]
           });
         }
-
-        /////////////주석 처리선///////////////////
-
-        // if(result.time[0] !== undefined) {
-        //   axios.patch("http://localhost:5100/login",{
-        //     id:1,
-        //     time:[
-        //       ...result.time,
-        //       {
-        //         dateId: date,
-        //         dateTime : 80
-        //       }
-        //     ]
-        //   })
-        // } else {
-        //   axios.patch("http://localhost:5100/login", {
-        //     // payload
-        //     id: 1,
-        //     time: [{
-        //       dateId: 11,
-        //       dateTime:40 //fixedRangeValueNum
-        //     }]
-        //   })
-        // }
       })
       .catch(err => console.error(err));
     clearInterval(timer);

@@ -3,7 +3,7 @@ const ctx = document.querySelector('.myChart').getContext('2d');
 let arr = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
 let getVal = (function() {
     return axios
-      .get("http://localhost:5100/login")
+      .get("http://localhost:5100/login/sort")
       .then(res => result = res.data)
       .then(result => result = result[0].time)
       .then(result => result.sort((resultA, resultB) => resultA.dateId - resultB.dateId))
