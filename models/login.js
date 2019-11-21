@@ -50,7 +50,6 @@ loginSchema.statics.findAll = function() {
 //PATCH
 loginSchema.statics.updateUserById = function(id, payload) {
   return this.findOneAndUpdate(id, payload,{_id:false});
-  // return this.update(id, payload,{_id:false});
 };
 
 // compiling loginSchema into a model (OR CREATING A MODEL)
