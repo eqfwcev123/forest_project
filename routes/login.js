@@ -9,6 +9,12 @@ router.get("/", (req, res) => {
     .catch(err => res.status(500).send(err));
 });
 
+router.get("/sort", (req, res) => {
+    Login.find({})
+    .then(info => res.send(info))
+    .catch(err => res.status(500).send(err));
+});
+
 // 새로운 사용자 정보를 생성하지 않는 이상 크게 상관없슴. 시간나면 로그인 폼 만들어서 사용
 router.post("/", (req, res) => {
   Login.createUser(req.body)
