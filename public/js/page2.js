@@ -34,7 +34,7 @@ function setcumulativeTime() {
     .then(result => result = result.data)
     .then(result => result = result[0].time)
     .then(result => result.reduce((acc,cur) =>acc+cur.dateTime,0))
-    .then(result => console.log(result))
+    .then(result => $totalTime.textContent = `Total Time: ${result}`)
 }
 //이벤트
 $decreaseButton.onclick = decreaseButtonClick;
