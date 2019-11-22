@@ -61,7 +61,7 @@ let getVal = (function () {
             for (let i = 1; i <= 31; i++) {
                 $eachTree = document.querySelector(`li:nth-child(${i}) img`);
                 console.log($eachTree);
-                if (arr[i-1] !== 0) {
+                if (arr[i-1] !== 0) { // 배열의 각 요소가 0이 아니면 색이 칠해진 나무를 화면에 출력해라 
                     $eachTree.src = "./img/tree.png";
                 }
             }
