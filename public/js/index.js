@@ -29,40 +29,43 @@ function buttonClick(e) {
 
   let button = e.target;
 
-  button.classList.add("displayNone");
+  button.classList.add("displayNone"); // 클릭하면 시작버튼/종료버튼을 숨김
 
-  if (button.classList.contains("startButton")) {
-    $titleTextImg.src = "./img/titleText02.png";
-    $treeImg.src = `./img/mainImg0${Math.floor(fixedRangeValueNum / 20) +
-      1}.png`;
-    buttonStatus = "start";
-    $stopButton.classList.remove("displayNone");
-    timer = setInterval(timerFunc, 1);
-  } else if (button.classList.contains("stopButton")) {
-    $titleTextImg.src = "./img/titleText04.png";
-    $rangeSliderBackground.style.width = "0";
+  if (button.classList.contains("startButton")) { // 클래스에 startButton이라는 class 가 있으면
+    $titleTextImg.src = "./img/titleText02.png"; // 타이틀 이미지를 변경해라. (힘내세요 할수 있어요!)
+    // Math.floor(18/19)+1 === Math.floor(0.947)+1 === 0+1 === 1
+    $treeImg.src = `./img/mainImg0${Math.floor(fixedRangeValueNum / 20) +1}.png`; // 0~19 는 이미지1, 20~39 는 이미지 2 ... 
+    buttonStatus = "start"; // 상태 표현. 현재 진행중
+    $stopButton.classList.remove("displayNone"); //stopButton을 화면에 표시.
+    timer = setInterval(timerFunc, 1); // 타이머 꾸준히 감소
+  } 
+  else if (button.classList.contains("stopButton")) { // 중간에 포기할 경우
+    $titleTextImg.src = "./img/titleText04.png"; //타이틀 로고 변경 (너무 무리하지 마세요)
+    $rangeSliderBackground.style.width = "0"; //rangeslider 에 칠해지는 색의 길이를 삭제시킨다
     $timerDisplay.textContent =
       minuteStr.length === 1
         ? `0${fixedRangeValueNum}:00`
         : `${fixedRangeValueNum}:00`;
-    $treeImg.src = "./img/mainImg07.png";
-    buttonStatus = "stop";
-    $startButton.classList.remove("displayNone");
+    $treeImg.src = "./img/mainImg07.png"; // 죽은나무 표시
+    buttonStatus = "stop"; // 상태표현. 현재 멈춤
+    $startButton.classList.remove("displayNone"); // startButton 을 화면에 다시 표시
     clearInterval(timer);
-    secondNum = fixedRangeValueNum * 60;
+    secondNum = fixedRangeValueNum * 60; 
   }
 }
 
+// RangeSlider 를 통해 시간 지정
 function setMinute(e) {
-  if (buttonStatus === "start") {
+  if (buttonStatus === "start") { // 시작을 했으면 rangeSlider의 값은 사용자가 지정한 값
     $rangeSlider.value = `${fixedRangeValueNum}`;
     return;
   }
 
-  minuteStr = e.target.value;
+  minuteStr = e.target.value; // rangeSlider의 값. 1~에서 100 사이의 숫자. rangeSlider의 값은 문자열이다.
   fixedRangeValueNum = +minuteStr;
-  secondNum = +minuteStr * 60;
+  secondNum = +minuteStr * 60; //TODO: 이건 도대체 무엇
 
+  // 시간이 20미만이면 첫번째 이미지, 40미만이면 두번째 이미지 ...
   $treeImg.src = `./img/mainImg0${Math.floor(+minuteStr / 20) + 1}.png`;
   $timerDisplay.textContent =
     minuteStr.length === 1 ? `0${minuteStr}:00` : `${minuteStr}:00`;
@@ -71,20 +74,24 @@ function setMinute(e) {
 
 function mouseleaveFromBody() {
   if (buttonStatus === "ready" || buttonStatus === "stop") return;
+  // ready = 버튼 시작 누르기전
+  // stop = 버튼 시작 중 포기
+  // start 일때만 밑에 문들이 실행된다. 즉 buttonStatus 가 ready 혹은 stop 이면 마우스 커서가 화면 밖을로 나가도 나무가 죽지 않는다.
   $startButton.classList.remove("displayNone");
   $stopButton.classList.add("displayNone");
-  $titleTextImg.src = "img/titleText04.png";
+  $titleTextImg.src = "img/titleText04.png"; //위에 타이틀 변경
   $rangeSliderBackground.style.width = "0";
   $timerDisplay.textContent =
     minuteStr.length === 1
       ? `0${fixedRangeValueNum}:00`
       : `${fixedRangeValueNum}:00`;
-  $treeImg.src = "./img/mainImg07.png";
+  $treeImg.src = "./img/mainImg07.png"; //죽은나무
   buttonStatus = "stop";
   secondNum = fixedRangeValueNum * 60;
   clearInterval(timer);
 }
 
+// TEST 용 날짜 변경
 function increaseDate() {
   date = date + 1;
   if(date > 31){
@@ -97,7 +104,7 @@ function increaseDate() {
 // function declaration Start
 function timerFunc() {
   secondNum--;
-
+  // TODO : 시간이 10 이하이면 0 표시 아니면 표시안함
   $timerDisplay.textContent = `${
     Math.floor(secondNum / 60) >= 10
       ? Math.floor(secondNum / 60)
@@ -110,9 +117,16 @@ function timerFunc() {
   // $rangeSliderBackground.style.width = `calc(calc(calc(100% - 34px) / 100) * ${fixedRangeValueNum - Math.floor(secondNum/60)})`
   $rangeSliderBackground.style.width = `calc(calc(calc(100% - 34px) / 100) * ${fixedRangeValueNum -
     Math.floor(secondNum / 60)})`;
+    // TODO : 100% - (34px버튼 크기)/ 100 (100개의 칸을로 나눈다)
+    // 100% = 칸의 전체 길이
+    // 34px = 버튼 길이
+    // 나누기 100 = 전체 슬라이더를 100을로 나눈것. 1분이 지날때 마다 칸이 하나씩 칠해진다
+    // fixedRangeValueNum = 사용자가 초기에 지정한 시간
+    // ${fixedRangeValueNum -Math.floor(secondNum / 60)} = 사용자가 지정한 시간 - 현재 진행된 시간
 
   if (Math.floor(secondNum / 60) === 0 && secondNum % 60 === 0) {
-    let result = 0;
+    // 지정한 시간이 0이 될경우
+    let result = 0
     $startButton.classList.remove("displayNone");
     $stopButton.classList.add("displayNone");
     $titleTextImg.src = "./img/titleText03.png";
@@ -186,5 +200,5 @@ function timerFunc() {
 $buttons.onclick = buttonClick;
 $body.onmouseleave = mouseleaveFromBody;
 $rangeSlider.oninput = setMinute;
-$dateButton.onclick = increaseDate;
+$dateButton.onclick = increaseDate; //TEST 용 시간 증가
 // Event Handler Stop
